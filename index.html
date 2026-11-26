@@ -20,17 +20,67 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 .notice{background:#2a281b;border:1px solid #65552a;color:#f8df9c;padding:12px;border-radius:12px;font-size:13px;margin:0 0 15px}
 .empty{padding:22px;text-align:center;color:var(--muted)}.bar{height:9px;border-radius:10px;background:#263550;overflow:hidden}.bar span{display:block;height:100%;background:var(--green)}
 .mobilebar{display:none}.small{font-size:12px}.right{display:flex;gap:8px;align-items:center}
-@media(max-width:850px){.app{display:block}.side{display:none}main{padding:18px 14px 90px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.mobilebar{display:grid;position:fixed;bottom:0;left:0;right:0;background:#0e1628;border-top:1px solid var(--line);grid-template-columns:repeat(5,1fr);padding:6px;z-index:5}.mobilebar button{background:transparent;color:var(--muted);padding:8px 2px;font-size:11px}.mobilebar button.active{color:var(--blue)}.agent-grid{grid-template-columns:1fr}.top{align-items:flex-start}.top h1{font-size:22px}}
+@media(max-width:850px){.app{display:block}.side{display:none}main{padding:18px 14px 90px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.mobilebar{display:grid;position:fixed;bottom:0;left:0;right:0;background:#0e1628;border-top:1px solid var(--line);grid-template-columns:repeat(6,1fr);padding:6px;z-index:5}.mobilebar button{background:transparent;color:var(--muted);padding:8px 2px;font-size:11px}.mobilebar button.active{color:var(--blue)}.agent-grid{grid-template-columns:1fr}.top{align-items:flex-start}.top h1{font-size:22px}}
 @media(max-width:420px){.grid{gap:9px}.card{padding:13px}.metric{font-size:22px}.formrow{grid-template-columns:1fr}}
+
+/* ===== 3D AI OFFICE ===== */
+.office-wrap{background:linear-gradient(145deg,#071329,#101f3c 55%,#091326);border:1px solid #29466e;border-radius:20px;padding:16px;overflow:hidden;position:relative}
+.office-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.office-scene{height:440px;position:relative;perspective:1000px;perspective-origin:50% 42%;overflow:hidden;border-radius:16px;background:radial-gradient(ellipse at 50% 60%,#1b4770 0,#102541 42%,#081326 78%)}
+.office-scene:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.7%,#4aa8ff22 50%,transparent 50.3%),linear-gradient(0deg,transparent 49.7%,#4aa8ff18 50%,transparent 50.3%);background-size:44px 44px;opacity:.35}
+.office-backwall{position:absolute;left:8%;right:8%;top:7%;height:42%;border:2px solid #4b9fe8;border-radius:18px 18px 5px 5px;background:linear-gradient(145deg,#132d4cdd,#071326ee);box-shadow:0 0 30px #168cff55,inset 0 0 30px #168cff22;transform:rotateX(-3deg)}
+.office-sign{text-align:center;color:#ffe4a0;font-weight:900;letter-spacing:.08em;text-shadow:0 0 14px #ffc75c;margin-top:12px;font-size:clamp(13px,2.5vw,22px)}
+.office-screen{margin:12px auto 0;width:70%;height:54%;border:1px solid #45a9ff;border-radius:8px;background:radial-gradient(ellipse,#164b7b,#06152b);box-shadow:0 0 20px #148dff66;display:flex;align-items:center;justify-content:space-evenly;color:#75c8ff;font-size:clamp(10px,1.7vw,15px);text-align:center}
+.office-floor{position:absolute;left:-10%;right:-10%;bottom:-28%;height:66%;background:repeating-linear-gradient(90deg,#193958 0 2px,transparent 2px 70px),repeating-linear-gradient(0deg,#193958 0 2px,transparent 2px 70px),linear-gradient(135deg,#152b47,#071326);transform:rotateX(62deg);transform-origin:top center;border-top:2px solid #4eb7ff;box-shadow:0 -10px 40px #168cff33}
+.office-platform{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%) rotateX(55deg);width:190px;height:110px;border:4px solid #47baff;border-radius:50%;background:radial-gradient(ellipse,#173f68,#071326 70%);box-shadow:0 0 28px #168cff99}
+.office-platform:after{content:"AI";position:absolute;inset:0;display:grid;place-items:center;color:#8be0ff;font-size:36px;font-weight:900;text-shadow:0 0 18px #168cff;transform:rotateX(-55deg)}
+.office-desk{position:absolute;width:112px;min-height:104px;transform-style:preserve-3d;text-align:center;cursor:pointer;transition:transform .2s;z-index:3}
+.office-desk:hover{transform:translateY(-7px) scale(1.04)}
+.office-desk .person{font-size:37px;line-height:1.2;filter:drop-shadow(0 5px 3px #0009)}
+.office-desk .monitor{height:27px;margin:-1px auto 4px;width:70px;border:2px solid #68c7ff;border-radius:5px;background:linear-gradient(135deg,#163e65,#061326);box-shadow:0 0 12px #168cff88;color:#83d9ff;font-size:12px;padding:3px}
+.office-desk .desk-label{font-size:10px;line-height:1.2;color:#e9f5ff;background:#102846eF;border:1px solid #398ed0;border-radius:7px;padding:5px 3px;box-shadow:0 4px 12px #0008}
+.office-desk .desk-label b{display:block;color:#8ed8ff;font-size:11px}
+.office-desk.manager{left:50%;top:66%;transform:translate(-50%,-50%) scale(1.13);z-index:5}
+.office-desk.manager:hover{transform:translate(-50%,-57%) scale(1.17)}
+.office-desk.manager .person{font-size:43px}
+.office-desk.agent-pos-0{left:5%;top:57%}.office-desk.agent-pos-1{left:19%;top:50%}.office-desk.agent-pos-2{left:33%;top:57%}.office-desk.agent-pos-3{right:33%;top:57%}.office-desk.agent-pos-4{right:19%;top:50%}.office-desk.agent-pos-5{right:5%;top:57%}.office-desk.agent-pos-6{left:12%;top:75%}.office-desk.agent-pos-7{left:30%;top:78%}.office-desk.agent-pos-8{right:30%;top:78%}.office-desk.agent-pos-9{right:12%;top:75%}
+.office-desk.selected .desk-label{border-color:#ffe08a;box-shadow:0 0 16px #ffc85c99}
+.office-hint{position:absolute;bottom:9px;left:0;right:0;text-align:center;color:#b8d9f7;font-size:11px;z-index:6}
+.office-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.office-agent-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:12px}
+.office-agent-chip{background:#102541;border:1px solid #2c527c;border-radius:10px;padding:9px 5px;color:#eaf5ff;text-align:center;font-size:11px}
+.office-agent-chip span{display:block;font-size:22px}
+@media(max-width:700px){.office-scene{height:510px}.office-desk{width:82px}.office-desk .person{font-size:29px}.office-desk .desk-label{font-size:9px}.office-desk .desk-label b{font-size:10px}.office-desk .monitor{width:58px;height:23px}.office-desk.agent-pos-0{left:1%;top:48%}.office-desk.agent-pos-1{left:17%;top:43%}.office-desk.agent-pos-2{left:33%;top:48%}.office-desk.agent-pos-3{right:33%;top:48%}.office-desk.agent-pos-4{right:17%;top:43%}.office-desk.agent-pos-5{right:1%;top:48%}.office-desk.agent-pos-6{left:4%;top:72%}.office-desk.agent-pos-7{left:25%;top:77%}.office-desk.agent-pos-8{right:25%;top:77%}.office-desk.agent-pos-9{right:4%;top:72%}.office-desk.manager{top:62%}.office-agent-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 </style></head>
 <body>
 <div class="app">
 <aside class="side"><div class="brand">✦ Affiliate <span>Creator</span><br>Studio</div><nav class="nav" id="sideNav">
-<button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button><button data-page="products">▣ &nbsp; Produk</button><button data-page="content">✎ &nbsp; Konten</button><button data-page="transactions">↗ &nbsp; Transaksi</button><button data-page="agents">✧ &nbsp; 10 AI Agent</button><button data-page="reports">▤ &nbsp; Laporan</button><button data-page="settings">⚙ &nbsp; Pengaturan</button></nav>
+<button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button><button data-page="office3d">🏢 &nbsp; Kantor 3D</button><button data-page="products">▣ &nbsp; Produk</button><button data-page="content">✎ &nbsp; Konten</button><button data-page="transactions">↗ &nbsp; Transaksi</button><button data-page="agents">✧ &nbsp; 10 AI Agent</button><button data-page="reports">▤ &nbsp; Laporan</button><button data-page="settings">⚙ &nbsp; Pengaturan</button></nav>
 <div class="side-note">Versi awal • Data tersimpan di perangkat ini<br><span class="pill">Local demo</span></div></aside>
 <main>
 <header class="top"><div><div class="eyebrow">Creator workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small">Kelola produk, konten, dan performa affiliate.</div></div><div class="right"><span class="pill">● Offline-ready</span></div></header>
 <div class="notice">Mode awal: data disimpan di browser HP ini. Sepuluh agent menyediakan alur dan template kerja lokal; untuk jawaban AI generatif sungguhan, sambungkan API backend yang aman. Jangan masukkan API key di halaman publik.</div>
+
+<section id="office3d" class="section">
+ <div class="office-wrap">
+  <div class="office-top">
+   <div><div class="eyebrow">Virtual headquarters</div><h2 style="margin:3px 0">Kantor AI 10 Agen – 3D</h2><div class="small muted">Pilih karakter atau meja untuk membuka ruang kerja agen.</div></div>
+   <span class="pill">✦ Affiliate Creator Studio</span>
+  </div>
+  <div class="office-scene" aria-label="Kantor virtual 3D">
+   <div class="office-backwall"><div class="office-sign">AFFILIATE CREATOR STUDIO<br>KANTOR AI 10 AGEN</div><div class="office-screen"><div>📊<br>ANALYTICS</div><div>🌐<br>RESEARCH</div><div>✓<br>TASK BOARD</div></div></div>
+   <div class="office-floor"></div><div class="office-platform"></div>
+   <div class="office-desk manager" onclick="selectOfficeAgent(0)"><div class="person">👩🏻‍💼</div><div class="monitor">✦ AI</div><div class="desk-label"><b>Victoria</b>Chief Manager</div></div>
+   <div id="officeAgents"></div>
+   <div class="office-hint">Sentuh salah satu agen untuk memilih dan memberikan tugas</div>
+  </div>
+  <div class="office-controls"><button onclick="go('agents')">Buka pusat kendali agen</button><button class="secondary" onclick="runAllAgents()">Jalankan 10 agen berurutan</button></div>
+  <div class="office-agent-list" id="officeAgentList"></div>
+ </div>
+ <div class="card" style="margin-top:14px"><div class="card-head"><h2>Meja Direktur – Victoria</h2><span class="pill">Chief Manager</span></div><p class="muted small">Victoria mengoordinasikan pekerjaan. Masukkan satu instruksi umum, lalu jalankan seluruh agen secara berurutan.</p><label>Instruksi untuk seluruh kantor<textarea id="allAgentContext" placeholder="Contoh: Riset dan buat strategi konten untuk produk botol minum 1 liter. Gunakan informasi produk yang saya berikan."></textarea></label><button onclick="runAllAgents()">Kirim tugas ke 10 agen</button><div id="allAgentOutput" class="output">Laporan kerja kantor akan muncul di sini.</div></div>
+</section>
+
 <section id="dashboard" class="section active">
 <div class="grid">
 <div class="card"><div class="metric-label">Total Produk</div><div class="metric" id="mProducts">0</div></div>
@@ -62,7 +112,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 <div class="card" style="margin-top:14px"><div class="card-head"><h2>Ringkasan</h2><button class="secondary" onclick="exportCSV()">Ekspor CSV</button></div><p id="reportText" class="muted">Belum ada data transaksi.</p><div class="bar"><span id="conversionBar" style="width:0%"></span></div><p class="small muted">Rasio pesanan terhadap klik (berdasarkan data yang kamu catat).</p></div></section>
 <section id="settings" class="section"><div class="card"><h2>Pengaturan & cadangan data</h2><p class="muted small">Data tersimpan di localStorage browser pada perangkat ini. Hapus data browser dapat menghilangkan data, jadi ekspor cadangan secara berkala.</p><div class="actions"><button onclick="backup()">Unduh cadangan JSON</button><label style="margin:0"><input type="file" accept="application/json" id="restoreFile"></label><button class="secondary" onclick="restore()">Pulihkan JSON</button><button class="danger" onclick="clearData()">Hapus semua data</button></div><p class="small muted">Nama workspace: Affiliate Creator Studio • Versi 1.0 awal</p></div></section>
 </main></div>
-<nav class="mobilebar" id="mobileNav"><button class="active" data-page="dashboard">▦<br>Home</button><button data-page="products">▣<br>Produk</button><button data-page="content">✎<br>Konten</button><button data-page="agents">✧<br>Agent</button><button data-page="reports">▤<br>Laporan</button></nav>
+<nav class="mobilebar" id="mobileNav"><button class="active" data-page="dashboard">▦<br>Home</button><button data-page="office3d">🏢<br>Kantor 3D</button><button data-page="products">▣<br>Produk</button><button data-page="content">✎<br>Konten</button><button data-page="agents">✧<br>Agent</button><button data-page="reports">▤<br>Laporan</button></nav>
 <script>
 const KEY='acs_v1';
 let state=load();
@@ -73,7 +123,7 @@ function load(){try{return JSON.parse(localStorage.getItem(KEY))||{products:[],c
 function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
 function money(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0)}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));document.getElementById('pageTitle').textContent=({dashboard:'Dashboard',products:'Produk Affiliate',content:'Rencana Konten',transactions:'Transaksi',agents:'10 AI Agent',reports:'Laporan',settings:'Pengaturan'})[page];render()}
+function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));document.getElementById('pageTitle').textContent=({dashboard:'Dashboard',office3d:'Kantor AI 3D',products:'Produk Affiliate',content:'Rencana Konten',transactions:'Transaksi',agents:'10 AI Agent',reports:'Laporan',settings:'Pengaturan'})[page];render()}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
 document.getElementById('productForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.products.push({id:Date.now(),name:f.get('name'),platform:f.get('platform'),price:+f.get('price')||0,link:f.get('link'),notes:f.get('notes')});e.target.reset();save();alert('Produk disimpan di perangkat ini.')});
 document.getElementById('contentForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.contents.push({id:Date.now(),title:f.get('title'),platform:f.get('platform'),date:f.get('date'),status:f.get('status'),notes:f.get('notes')});e.target.reset();save();alert('Rencana konten disimpan.')});
@@ -103,44 +153,67 @@ function agentTemplate(i,ctx){let p=ctx.trim()||'[Nama produk dan detail produk]
 `ANALISIS PERFORMA\nProduk: ${p}\nCatat per konten: tayangan, klik, pesanan, komisi, tanggal, platform.\nCTR = klik ÷ tayangan × 100% (jika tayangan tersedia).\nKonversi = pesanan ÷ klik × 100%.\nBandingkan konten pada periode yang setara; jangan simpulkan dari data terlalu sedikit.`
 ];return templates[i]}
 function buildAgents(){agentGrid.innerHTML=agents.map((a,i)=>`<div class="agent"><strong>${i+1}. ${a[0]}</strong><small>${a[1]}</small><label style="margin-top:9px">Konteks produk / tugas<textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea></label><button onclick="runAgent(${i})">Jalankan agent</button></div>`).join('')}
+
+async function callAgentAPI(i, ctx) {
+  const role = agents[i][0];
+  const task = agents[i][1];
+  const prompt = `Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.
+Berikan hasil kerja yang praktis, terstruktur, dalam Bahasa Indonesia. Jangan mengarang data produk, harga, komisi, ulasan, atau klaim yang tidak diberikan. Tandai informasi yang perlu diverifikasi.
+Konteks dan instruksi pengguna:
+${ctx}`;
+  const response = await fetch('https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai', {
+    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({prompt})
+  });
+  const data = await response.json();
+  if (!response.ok || !data.success) throw new Error(data.error || 'AI gagal memproses tugas');
+  return data.result;
+}
 async function runAgent(i) {
   const ctx = document.getElementById('ctx' + i).value.trim();
-
-  if (!ctx) {
-    alert('Masukkan konteks produk dahulu');
-    return;
-  }
-
-  if (i !== 1) {
-    alert('Saat ini AI eksternal tersedia untuk Product Research Agent');
-    return;
-  }
-
-  agentOutput.textContent = 'AI sedang bekerja...';
-
+  if (!ctx) { alert('Masukkan konteks produk atau tugas dahulu'); return; }
+  agentOutput.textContent = agents[i][0] + ' sedang bekerja...';
   try {
-    const response = await fetch(
-      'https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt: ctx })
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.error || 'AI gagal');
-    }
-
-    agentOutput.textContent = JSON.stringify(data.result, null, 2);
-
+    const result = await callAgentAPI(i, ctx);
+    agentOutput.textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
   } catch (error) {
-    agentOutput.textContent = 'Terjadi kesalahan: ' + error.message;
+    agentOutput.textContent = 'Terjadi kesalahan: ' + error.message + '\nPeriksa koneksi internet dan konfigurasi backend Cloudflare.';
   }
+}
+const officePeople = ['🧑🏻‍💻','👩🏻‍💼','🧑🏽‍💼','👩🏼‍💻','🧑🏻‍🔬','👨🏻‍💼','👩🏽‍💻','👨🏼‍🎨','👩🏻‍📊','🧑🏽‍💻'];
+function buildOffice() {
+  const host = document.getElementById('officeAgents');
+  const list = document.getElementById('officeAgentList');
+  host.innerHTML = agents.map((a,i)=>`<div class="office-desk agent-pos-${i}" onclick="selectOfficeAgent(${i+1})"><div class="person">${officePeople[i]}</div><div class="monitor">▤ AI</div><div class="desk-label"><b>${a[0].replace(' Agent','')}</b>${a[1]}</div></div>`).join('');
+  list.innerHTML = agents.map((a,i)=>`<button class="office-agent-chip" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>`).join('');
+}
+function selectOfficeAgent(i) {
+  go('agents');
+  const idx = Math.max(0, Math.min(9, i-1));
+  const field = document.getElementById('ctx'+idx);
+  if (field) {
+    field.value = document.getElementById('allAgentContext')?.value || '';
+    field.focus();
+    agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konteks tugas lalu tekan Jalankan agent.';
+  }
+}
+async function runAllAgents() {
+  const ctx = document.getElementById('allAgentContext').value.trim();
+  if (!ctx) { alert('Tuliskan instruksi untuk kantor terlebih dahulu.'); return; }
+  const out = document.getElementById('allAgentOutput');
+  out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
+  const results = [];
+  for (let i=0;i<agents.length;i++) {
+    out.textContent = `Victoria: ${i+1}/10 – ${agents[i][0]} sedang bekerja...`;
+    try {
+      const result = await callAgentAPI(i, ctx);
+      results.push(`=== ${i+1}. ${agents[i][0]} ===\n${typeof result==='string'?result:JSON.stringify(result,null,2)}`);
+    } catch (e) {
+      results.push(`=== ${i+1}. ${agents[i][0]} ===\nGagal: ${e.message}`);
+    }
+    out.textContent = results.join('\n\n');
+  }
+  out.textContent = 'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
+  agentOutput.textContent = out.textContent;
 }
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
 function downloadOutput(){let b=new Blob([agentOutput.textContent],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='output-agent.txt';a.click();URL.revokeObjectURL(a.href)}
@@ -148,5 +221,5 @@ function backup(){let b=new Blob([JSON.stringify(state,null,2)],{type:'applicati
 function restore(){let f=restoreFile.files[0];if(!f)return alert('Pilih file JSON dahulu.');let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.products)||!Array.isArray(d.contents)||!Array.isArray(d.transactions))throw 0;state=d;save();alert('Cadangan dipulihkan.')}catch(e){alert('File cadangan tidak valid.')}};r.readAsText(f)}
 function clearData(){if(confirm('Yakin hapus seluruh produk, konten, dan transaksi di browser ini?')){state={products:[],contents:[],transactions:[]};save()}}
 function exportCSV(){let rows=[['tanggal','produk','platform','klik','pesanan','komisi'],...state.transactions.map(t=>[t.date,t.product,t.platform,t.clicks,t.orders,t.commission])];let csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='laporan-affiliate.csv';a.click();URL.revokeObjectURL(a.href)}
-buildAgents();render();
+buildAgents();buildOffice();render();
 </script></body></html>
