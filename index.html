@@ -52,6 +52,23 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 .office-agent-chip span{display:block;font-size:22px}
 @media(max-width:700px){.office-scene{height:510px}.office-desk{width:82px}.office-desk .person{font-size:29px}.office-desk .desk-label{font-size:9px}.office-desk .desk-label b{font-size:10px}.office-desk .monitor{width:58px;height:23px}.office-desk.agent-pos-0{left:1%;top:48%}.office-desk.agent-pos-1{left:17%;top:43%}.office-desk.agent-pos-2{left:33%;top:48%}.office-desk.agent-pos-3{right:33%;top:48%}.office-desk.agent-pos-4{right:17%;top:43%}.office-desk.agent-pos-5{right:1%;top:48%}.office-desk.agent-pos-6{left:4%;top:72%}.office-desk.agent-pos-7{left:25%;top:77%}.office-desk.agent-pos-8{right:25%;top:77%}.office-desk.agent-pos-9{right:4%;top:72%}.office-desk.manager{top:62%}.office-agent-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* ISOMETRIC SIMULATION OFFICE */
+.office-wrap{background:#101a2b;border:1px solid #31435c;border-radius:18px;padding:14px;overflow:hidden}
+.office-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.office-world{position:relative;width:100%;height:min(68vh,620px);min-height:390px;background:linear-gradient(#b8c5d2,#d9e0e5);border:1px solid #526a83;border-radius:14px;overflow:hidden;touch-action:pan-y}
+#officeCanvas{display:block;width:100%;height:100%;outline:none}
+.office-hud{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;flex-wrap:wrap}
+.office-hud span{background:#101b2ddd;color:#eaf3ff;border:1px solid #ffffff35;border-radius:9px;padding:6px 9px;font-size:11px;backdrop-filter:blur(8px)}
+.office-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.office-agent-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:10px}
+.office-agent-chip{background:#17263a;border:1px solid #344e6b;border-radius:9px;padding:8px 4px;color:#eaf5ff;text-align:center;font-size:10px}
+.office-agent-chip span{display:block;font-size:19px}
+.office-agent-chip.selected{border-color:#f3c96b;box-shadow:0 0 0 1px #f3c96b66}
+.office-selected{margin-top:10px;background:#0d192b;border:1px solid #334b68;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.office-selected strong{color:#8ed4ff}
+@media(max-width:700px){.office-world{height:510px;min-height:420px}.office-agent-list{grid-template-columns:repeat(2,minmax(0,1fr))}.office-wrap{padding:9px}}
+
 </style></head>
 <body>
 <div class="app">
@@ -64,21 +81,13 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 
 <section id="office3d" class="section">
  <div class="office-wrap">
-  <div class="office-top">
-   <div><div class="eyebrow">Virtual headquarters</div><h2 style="margin:3px 0">Kantor AI 10 Agen – 3D</h2><div class="small muted">Pilih karakter atau meja untuk membuka ruang kerja agen.</div></div>
-   <span class="pill">✦ Affiliate Creator Studio</span>
-  </div>
-  <div class="office-scene" aria-label="Kantor virtual 3D">
-   <div class="office-backwall"><div class="office-sign">AFFILIATE CREATOR STUDIO<br>KANTOR AI 10 AGEN</div><div class="office-screen"><div>📊<br>ANALYTICS</div><div>🌐<br>RESEARCH</div><div>✓<br>TASK BOARD</div></div></div>
-   <div class="office-floor"></div><div class="office-platform"></div>
-   <div class="office-desk manager" onclick="selectOfficeAgent(0)"><div class="person">👩🏻‍💼</div><div class="monitor">✦ AI</div><div class="desk-label"><b>Victoria</b>Chief Manager</div></div>
-   <div id="officeAgents"></div>
-   <div class="office-hint">Sentuh salah satu agen untuk memilih dan memberikan tugas</div>
-  </div>
-  <div class="office-controls"><button onclick="go('agents')">Buka pusat kendali agen</button><button class="secondary" onclick="runAllAgents()">Jalankan 10 agen berurutan</button></div>
+  <div class="office-top"><div><div class="eyebrow">Virtual headquarters</div><h2 style="margin:3px 0">Kantor AI 10 Agen – Virtual Office</h2><div class="small muted">Simulasi kantor 3D isometrik. Geser untuk memutar, cubit untuk zoom, sentuh agen untuk memilih.</div></div><span class="pill">✦ Affiliate Creator Studio</span></div>
+  <div class="office-world" id="officeWorld"><canvas id="officeCanvas" aria-label="Simulasi kantor 3D"></canvas><div class="office-hud"><span>🏢 LANTAI 01 • AI OFFICE</span><span id="officeClock">● LIVE SIMULATION</span></div></div>
+  <div class="office-controls"><button onclick="officeSetMode('work')">▶ Mulai bekerja</button><button class="secondary" onclick="officeSetMode('meeting')">👥 Mulai rapat</button><button class="secondary" onclick="officeResetView()">↻ Atur sudut kamera</button><button class="secondary" onclick="go('agents')">Pusat kendali AI</button></div>
+  <div class="office-selected"><div><div class="small muted">AGEN TERPILIH</div><strong id="officeSelectedName">Victoria • Chief Manager</strong><div class="small muted" id="officeSelectedStatus">Siap menerima instruksi</div></div><button onclick="officeSendSelectedToAgents()">Beri tugas</button></div>
   <div class="office-agent-list" id="officeAgentList"></div>
  </div>
- <div class="card" style="margin-top:14px"><div class="card-head"><h2>Meja Direktur – Victoria</h2><span class="pill">Chief Manager</span></div><p class="muted small">Victoria mengoordinasikan pekerjaan. Masukkan satu instruksi umum, lalu jalankan seluruh agen secara berurutan.</p><label>Instruksi untuk seluruh kantor<textarea id="allAgentContext" placeholder="Contoh: Riset dan buat strategi konten untuk produk botol minum 1 liter. Gunakan informasi produk yang saya berikan."></textarea></label><button onclick="runAllAgents()">Kirim tugas ke 10 agen</button><div id="allAgentOutput" class="output">Laporan kerja kantor akan muncul di sini.</div></div>
+ <div class="card" style="margin-top:14px"><div class="card-head"><h2>Meja Direktur – Victoria</h2><span class="pill">Chief Manager</span></div><p class="muted small">Tulis instruksi rapat atau pekerjaan. Tombol rapat menggerakkan karakter ke meja rapat sebagai simulasi visual; pemrosesan AI dilakukan saat tugas dikirim.</p><label>Instruksi untuk seluruh kantor<textarea id="allAgentContext" placeholder="Contoh: Riset produk botol minum 1 liter dan susun strategi konten affiliate."></textarea></label><button onclick="runAllAgents()">Kirim tugas ke 10 agen</button><div id="allAgentOutput" class="output">Laporan kerja kantor akan muncul di sini.</div></div>
 </section>
 
 <section id="dashboard" class="section active">
@@ -181,10 +190,8 @@ async function runAgent(i) {
 }
 const officePeople = ['🧑🏻‍💻','👩🏻‍💼','🧑🏽‍💼','👩🏼‍💻','🧑🏻‍🔬','👨🏻‍💼','👩🏽‍💻','👨🏼‍🎨','👩🏻‍📊','🧑🏽‍💻'];
 function buildOffice() {
-  const host = document.getElementById('officeAgents');
-  const list = document.getElementById('officeAgentList');
-  host.innerHTML = agents.map((a,i)=>`<div class="office-desk agent-pos-${i}" onclick="selectOfficeAgent(${i+1})"><div class="person">${officePeople[i]}</div><div class="monitor">▤ AI</div><div class="desk-label"><b>${a[0].replace(' Agent','')}</b>${a[1]}</div></div>`).join('');
-  list.innerHTML = agents.map((a,i)=>`<button class="office-agent-chip" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>`).join('');
+ const list=document.getElementById('officeAgentList');
+ list.innerHTML=agents.map((a,i)=>`<button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>`).join('');
 }
 function selectOfficeAgent(i) {
   go('agents');
@@ -222,4 +229,59 @@ function restore(){let f=restoreFile.files[0];if(!f)return alert('Pilih file JSO
 function clearData(){if(confirm('Yakin hapus seluruh produk, konten, dan transaksi di browser ini?')){state={products:[],contents:[],transactions:[]};save()}}
 function exportCSV(){let rows=[['tanggal','produk','platform','klik','pesanan','komisi'],...state.transactions.map(t=>[t.date,t.product,t.platform,t.clicks,t.orders,t.commission])];let csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='laporan-affiliate.csv';a.click();URL.revokeObjectURL(a.href)}
 buildAgents();buildOffice();render();
-</script></body></html>
+</script>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
+const canvas=document.getElementById('officeCanvas');
+const world=document.getElementById('officeWorld');
+if(canvas && world){
+ const scene=new THREE.Scene(); scene.background=new THREE.Color(0xb9c7d4);
+ const camera=new THREE.PerspectiveCamera(34,1,.1,100); camera.position.set(15,17,19);
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.outputColorSpace=THREE.SRGBColorSpace;
+ const controls=new OrbitControls(camera,renderer.domElement); controls.target.set(0,0,0); controls.enableDamping=true; controls.maxPolarAngle=Math.PI*.47; controls.minDistance=10; controls.maxDistance=29;
+ scene.add(new THREE.HemisphereLight(0xffffff,0x657080,2.1)); const sun=new THREE.DirectionalLight(0xffffff,2.3); sun.position.set(-8,15,10); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); scene.add(sun);
+ const mat=(color,rough=.82)=>new THREE.MeshStandardMaterial({color,roughness:rough});
+ const floor=new THREE.Mesh(new THREE.BoxGeometry(20,.35,15),mat(0xe7dfce)); floor.position.y=-.2; floor.receiveShadow=true; scene.add(floor);
+ const wallMat=mat(0xd3d9df); const wallBack=new THREE.Mesh(new THREE.BoxGeometry(20,4,.25),wallMat); wallBack.position.set(0,1.8,-7.5); wallBack.castShadow=true; scene.add(wallBack);
+ const wallLeft=new THREE.Mesh(new THREE.BoxGeometry(.25,4,15),wallMat); wallLeft.position.set(-10,1.8,0); wallLeft.castShadow=true; scene.add(wallLeft);
+ // windows and office accents
+ for(let i=0;i<4;i++){let win=new THREE.Mesh(new THREE.BoxGeometry(2.7,1.35,.08),mat(0x8fc4d8,.25));win.position.set(-7.5+i*4.7,2.1,-7.32);scene.add(win);}
+ const wood=mat(0x9b6847), dark=mat(0x354354), screenMat=mat(0x263e58,.3), chairMat=mat(0x56677a);
+ function box(parent,w,h,d,material,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
+ function makeDesk(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);box(g,2,.16,1.1,wood,0,1.05,0);for(const dx of [-.82,.82])for(const dz of [-.4,.4])box(g,.12,1,.12,dark,dx,.5,dz);box(g,.78,.52,.08,dark,0,1.42,-.22);box(g,.68,.4,.025,screenMat,0,1.44,-.17);box(g,.16,.08,.15,dark,0,1.12,-.12);const chair=new THREE.Group();chair.position.set(0,0,.95);g.add(chair);box(chair,.65,.14,.62,chairMat,0,.58,0);box(chair,.62,.75,.14,chairMat,0,.98,.25);box(chair,.12,.55,.12,dark,0,.25,0);return g;}
+ // central meeting area
+ const meeting=new THREE.Mesh(new THREE.CylinderGeometry(2.0,2.0,.22,12),wood);meeting.position.set(0,.55,-.3);meeting.castShadow=true;scene.add(meeting);
+ const meetingLeg=new THREE.Mesh(new THREE.CylinderGeometry(.24,.32,.55,8),dark);meetingLeg.position.set(0,.2,-.3);scene.add(meetingLeg);
+ for(let i=0;i<6;i++){const a=i*Math.PI/3;const c=new THREE.Mesh(new THREE.BoxGeometry(.72,.14,.72),chairMat);c.position.set(Math.cos(a)*2.25,.45,-.3+Math.sin(a)*2.25);c.rotation.y=-a;c.castShadow=true;scene.add(c);}
+ // reception and lounge
+ box(scene,2.7,.9,.8,mat(0x667d91),-7,.45,5.4);box(scene,2.2,.22,1.4,mat(0x8c9ba6),6,.25,5.2);
+ const agentsData=[['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']];
+ const positions=[[-7,-4],[-3.7,-4],[3.7,-4],[7,-4],[-7,2.8],[-3.7,3.3],[3.7,3.3],[7,2.8],[-7,5.7],[7,5.7]];
+ const avatarColors=[0x4b82b8,0xd18b9a,0x6e9b83,0xb48a60,0x8d83ba,0x4f9aaf,0xb18a73,0x7290a8,0xc18caa,0x8b9b67];
+ const agentGroups=[]; const clickable=[];
+ function labelSprite(text){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='rgba(25,39,56,.88)';ctx.beginPath();ctx.roundRect(8,8,496,112,18);ctx.fill();ctx.strokeStyle='#a9c6dc';ctx.lineWidth=5;ctx.stroke();ctx.fillStyle='#fff';ctx.font='bold 42px system-ui';ctx.textAlign='center';ctx.fillText(text,256,78);const tex=new THREE.CanvasTexture(c);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true}));s.scale.set(2.3,.58,1);s.position.y=2.8;return s;}
+ function makeAgent(i){const g=new THREE.Group();const [x,z]=positions[i];g.position.set(x,0,z);scene.add(g);
+  const body=new THREE.Mesh(new THREE.CapsuleGeometry(.28,.62,4,8),mat(avatarColors[i]));body.position.y=1.05;body.castShadow=true;g.add(body);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.27,12,10),mat(0xe7b995));head.position.y=1.68;head.castShadow=true;g.add(head);
+  const hair=new THREE.Mesh(new THREE.SphereGeometry(.275,10,7,0,Math.PI*2,0,Math.PI*.55),mat(0x46362e));hair.position.y=1.78;g.add(hair);
+  for(const side of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.09,.42,3,6),mat(avatarColors[i]));arm.position.set(side*.34,1.15,.02);arm.rotation.z=side*.25;g.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.1,.42,3,6),dark);leg.position.set(side*.13,.38,0);g.add(leg);}
+  const desk=makeDesk(x,z+.5);g.add(labelSprite(['Victoria',...agentsData.slice(1).map(a=>a[0].replace(' Agent',''))][i]));g.userData={index:i,name:agentsData[i][0],status:'Bekerja di meja'};agentGroups.push(g);clickable.push(body,head);return g;}
+ agentsData.forEach((_,i)=>makeAgent(i));
+ // wall logo sign
+ const sign=box(scene,6,.08,.35,mat(0x314d68),0,3.6,-7.2);sign.rotation.z=0;
+ let selected=0,mode='work',meetingTargets=[];
+ const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+ function select(i){selected=i;const d=agentsData[i];document.getElementById('officeSelectedName').textContent=(i===0?'Victoria • ':'')+d[0];document.getElementById('officeSelectedStatus').textContent=agentGroups[i].userData.status;document.querySelectorAll('.office-agent-chip').forEach((b,j)=>b.classList.toggle('selected',j===i));}
+ function onPick(e){const r=canvas.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(clickable,false);if(hits.length){const idx=clickable.indexOf(hits[0].object);select(Math.floor(idx/2));}}
+ canvas.addEventListener('pointerdown',onPick);
+ window.selectOfficeAgent=(n)=>{select(Math.max(0,Math.min(9,n-1)));};
+ window.officeSetMode=(m)=>{mode=m;meetingTargets=[];agentGroups.forEach((g,i)=>{if(m==='meeting'){const a=i/10*Math.PI*2;meetingTargets[i]=new THREE.Vector3(Math.cos(a)*3.0,0,-.3+Math.sin(a)*3.0);g.userData.status='Bergerak ke ruang rapat';}else{meetingTargets[i]=new THREE.Vector3(positions[i][0],0,positions[i][1]);g.userData.status='Bekerja di meja';}});select(selected);document.getElementById('officeClock').textContent=m==='meeting'?'● TEAM MEETING':'● WORK MODE';};
+ window.officeResetView=()=>{camera.position.set(15,17,19);controls.target.set(0,0,0);controls.update();};
+ window.officeSendSelectedToAgents=()=>{document.getElementById('ctx'+selected).value=document.getElementById('allAgentContext').value;go('agents');};
+ function resize(){const w=world.clientWidth,h=world.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(world);resize();
+ const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();agentGroups.forEach((g,i)=>{g.position.y=.025*Math.sin(t*2+i);if(meetingTargets[i]){const v=meetingTargets[i].clone().sub(g.position);if(v.length()>.12){g.position.add(v.normalize()*.025);g.rotation.y=Math.atan2(v.x,v.z);}}else{g.rotation.y=.06*Math.sin(t+i);}});controls.update();renderer.render(scene,camera);}animate();select(0);
+}
+</script>
+
+</body></html>
