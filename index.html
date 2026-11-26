@@ -103,7 +103,45 @@ function agentTemplate(i,ctx){let p=ctx.trim()||'[Nama produk dan detail produk]
 `ANALISIS PERFORMA\nProduk: ${p}\nCatat per konten: tayangan, klik, pesanan, komisi, tanggal, platform.\nCTR = klik ÷ tayangan × 100% (jika tayangan tersedia).\nKonversi = pesanan ÷ klik × 100%.\nBandingkan konten pada periode yang setara; jangan simpulkan dari data terlalu sedikit.`
 ];return templates[i]}
 function buildAgents(){agentGrid.innerHTML=agents.map((a,i)=>`<div class="agent"><strong>${i+1}. ${a[0]}</strong><small>${a[1]}</small><label style="margin-top:9px">Konteks produk / tugas<textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea></label><button onclick="runAgent(${i})">Jalankan agent</button></div>`).join('')}
-function runAgent(i){agentOutput.textContent=agents[i][0]+'\\n\\n'+agentTemplate(i,document.getElementById('ctx'+i).value)}
+async function runAgent(i) {
+  const ctx = document.getElementById('ctx' + i).value.trim();
+
+  if (!ctx) {
+    alert('Masukkan konteks produk dahulu');
+    return;
+  }
+
+  if (i !== 1) {
+    alert('Saat ini AI eksternal tersedia untuk Product Research Agent');
+    return;
+  }
+
+  agentOutput.textContent = 'AI sedang bekerja...';
+
+  try {
+    const response = await fetch(
+      'https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: ctx })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || 'AI gagal');
+    }
+
+    agentOutput.textContent = JSON.stringify(data.result, null, 2);
+
+  } catch (error) {
+    agentOutput.textContent = 'Terjadi kesalahan: ' + error.message;
+  }
+}
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
 function downloadOutput(){let b=new Blob([agentOutput.textContent],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='output-agent.txt';a.click();URL.revokeObjectURL(a.href)}
 function backup(){let b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='affiliate-studio-backup.json';a.click();URL.revokeObjectURL(a.href)}
