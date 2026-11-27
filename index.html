@@ -265,46 +265,116 @@ agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konte
 }
 }
 
+
 async function runAllAgents() {
   const ctx = document.getElementById('allAgentContext').value.trim();
 
   if (!ctx) {
-    alert('Tuliskan instruksi untuk kantor terlebih dahulu.');
+    alert('Tuliskan instruksi CEO terlebih dahulu.');
     return;
   }
 
   const out = document.getElementById('allAgentOutput');
-  out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
+  const reports = [];
 
-  const results = [];
+  out.textContent = 'Victoria sedang mengoordinasikan 9 agen spesialis...';
 
-  for (let i = 0; i < agents.length; i++) {
-    out.textContent = `Victoria: ${i + 1}/10 - ${agents[i][0]} sedang bekerja...`;
+  // TAHAP 1: SEMBILAN AGEN SPESIALIS
+  for (let i = 1; i < agents.length; i++) {
+    out.textContent =
+      `Victoria: Agen ${i + 1}/10 - ${agents[i][0]} sedang bekerja...`;
 
     try {
       const result = await callAgentAPI(i, ctx);
 
-      results.push(
-        `=== ${i + 1}. ${agents[i][0]} ===\n${
-          typeof result === 'string'
-            ? result
-            : JSON.stringify(result, null, 2)
-        }`
-      );
+      reports.push({
+        name: agents[i][0],
+        success: true,
+        report: typeof result === 'string'
+          ? result
+          : JSON.stringify(result, null, 2)
+      });
 
-    } catch (e) {
-      results.push(
-        `=== ${i + 1}. ${agents[i][0]} ===\nGagal: ${e.message}`
-      );
+    } catch (error) {
+      reports.push({
+        name: agents[i][0],
+        success: false,
+        report: 'Gagal: ' + error.message
+      });
     }
-
-    out.textContent = results.join('\n\n');
   }
 
+  // TAHAP 2: VICTORIA MENGANALISIS SEMUA LAPORAN
   out.textContent =
-    'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
+    'Victoria sedang memeriksa dan menggabungkan 9 laporan...';
 
-  agentOutput.textContent = out.textContent;
+  const summary = reports.map((r, i) =>
+    `AGEN ${i + 2}: ${r.name}\n` +
+    `Status: ${r.success ? 'Berhasil' : 'Gagal'}\n` +
+    `Hasil: ${r.report.slice(0, 240)}`
+  ).join('\n\n');
+
+  const managerContext = `
+INSTRUKSI ASLI CEO:
+${ctx.slice(0, 700)}
+
+SEMBILAN LAPORAN SPESIALIS:
+${summary}
+
+TUGAS KHUSUS VICTORIA:
+1. Analisis seluruh hasil kerja sembilan agen.
+2. Gabungkan hasil yang saling berkaitan.
+3. Temukan kekurangan dan kesalahan strategi.
+4. Tentukan prioritas pekerjaan.
+5. Buat keputusan strategis untuk bisnis affiliate.
+6. Berikan instruksi lanjutan kepada setiap agen.
+7. Jangan mengarang data yang tidak tersedia.
+
+Buat satu laporan akhir yang terintegrasi dalam Bahasa Indonesia.
+`;
+
+  let victoriaReport = '';
+
+  try {
+    const result = await callAgentAPI(0, managerContext);
+
+    victoriaReport = typeof result === 'string'
+      ? result
+      : JSON.stringify(result, null, 2);
+
+  } catch (error) {
+    victoriaReport =
+      'Victoria gagal membuat laporan akhir: ' + error.message;
+  }
+
+  // TAHAP 3: LAPORAN AKHIR KANTOR
+  const finalReport = `
+LAPORAN KANTOR AI 10 AGEN
+================================
+
+LAPORAN DIREKTUR: VICTORIA
+
+${victoriaReport}
+
+================================
+LAPORAN SEMBILAN AGEN SPESIALIS
+================================
+
+${reports.map((r, i) =>
+  `${i + 2}. ${r.name}
+Status: ${r.success ? 'BERHASIL' : 'GAGAL'}
+
+${r.report}`
+).join('\n\n================================\n\n')}
+`;
+
+  out.textContent = finalReport;
+
+  const agentOutput = document.getElementById('agentOutput');
+
+  if (agentOutput) {
+    agentOutput.textContent = finalReport;
+  }
 }
 
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
