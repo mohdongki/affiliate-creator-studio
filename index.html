@@ -306,20 +306,58 @@ async function runAllAgents() {
 
   out.textContent = 'Victoria sedang mengoordinasikan 9 agen spesialis...';
 
-  // TAHAP 1: SEMBILAN AGEN SPESIALIS
+  // TAHAP 1: SEMBILAN AGEN BEKERJA BERURUTAN
   for (let i = 1; i < agents.length; i++) {
     out.textContent =
       `Victoria: Agen ${i + 1}/10 - ${agents[i][0]} sedang bekerja...`;
 
+    // Ringkasan hasil agen yang sudah bekerja
+    const previousReports = reports.map((r, index) => {
+      return `
+AGEN ${index + 2}: ${r.name}
+STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
+HASIL:
+${r.report.slice(0, 900)}
+`;
+    }).join('\n');
+
+    const agentContext = `
+INSTRUKSI ASLI CEO:
+${ctx}
+
+HASIL PEKERJAAN AGEN SEBELUMNYA:
+${previousReports || 'Belum ada laporan agen sebelumnya.'}
+
+INSTRUKSI TAMBAHAN:
+1. Kerjakan tugas spesialisasi kamu sekarang.
+2. Gunakan laporan agen sebelumnya sebagai bahan pendukung.
+3. Jangan hanya menyatakan siap atau menunggu instruksi.
+4. Berikan hasil kerja konkret berupa daftar, tabel, strategi, atau naskah.
+5. Jika data belum tersedia, buat draf yang aman dan tandai bagian yang perlu diverifikasi.
+6. Jangan mengarang fakta.
+7. Jangan mengulang seluruh laporan agen sebelumnya.
+`;
+
     try {
-      const result = await callAgentAPI(i, ctx);
+      const result = await callAgentAPI(i, agentContext);
+
+      let content = typeof result === 'string'
+        ? result
+        : JSON.stringify(result, null, 2);
+
+      // Ambil isi jawaban jika hasil berbentuk JSON
+      try {
+        const parsed = JSON.parse(content);
+        content =
+          parsed.choices?.[0]?.message?.content ||
+          parsed.result?.choices?.[0]?.message?.content ||
+          content;
+      } catch (e) {}
 
       reports.push({
         name: agents[i][0],
         success: true,
-        report: typeof result === 'string'
-          ? result
-          : JSON.stringify(result, null, 2)
+        report: String(content)
       });
 
     } catch (error) {
@@ -331,46 +369,46 @@ async function runAllAgents() {
     }
   }
 
-  // TAHAP 2: VICTORIA MENGANALISIS SEMUA LAPORAN
+  // TAHAP 2: VICTORIA MEMERIKSA SEMBILAN LAPORAN
   out.textContent =
-    'Victoria sedang memeriksa dan menggabungkan 9 laporan...';
+    'Victoria sedang membaca dan menggabungkan sembilan laporan...';
 
-  
-const summary = reports.map((r, i) => {
-  let content = r.report || '';
-
-  try {
-    const parsed = JSON.parse(content);
-    content =
-      parsed.choices?.[0]?.message?.content ||
-      parsed.result?.choices?.[0]?.message?.content ||
-      content;
-  } catch (e) {}
-
-  return `AGEN ${i + 2}: ${r.name}
+  const summary = reports.map((r, i) => `
+AGEN ${i + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
-HASIL: ${String(content).replace(/\s+/g, ' ').slice(0, 180)}`;
-}).join('\n\n');
+LAPORAN:
+${r.report.slice(0, 1000)}
+`).join('\n\n');
 
-const managerContext = `
+  const managerContext = `
 INSTRUKSI ASLI CEO:
-${ctx.slice(0, 500)}
+${ctx}
 
-LAPORAN SEMBILAN AGEN:
+LAPORAN SEMBILAN AGEN SPESIALIS:
 ${summary}
 
-TUGAS VICTORIA:
-1. Analisis hasil sembilan agen.
-2. Gabungkan hasil yang berkaitan.
-3. Temukan kekurangan.
-4. Tentukan prioritas.
-5. Buat keputusan strategis.
-6. Berikan instruksi lanjutan.
-7. Jangan mengarang data.
+TUGAS VICTORIA SEBAGAI DIREKTUR:
+1. Baca seluruh laporan sembilan agen di atas.
+2. Identifikasi hasil konkret setiap agen.
+3. Gabungkan pekerjaan yang saling berkaitan.
+4. Jangan menyebut hasil nihil jika agen sudah memberikan hasil.
+5. Bedakan hasil final, draf, simulasi, dan hal yang belum diverifikasi.
+6. Temukan kekurangan, kesalahan, dan konflik antaragen.
+7. Tentukan prioritas pekerjaan berikutnya.
+8. Jangan mengarang data atau mengklaim pekerjaan yang belum dilakukan.
 
-Buat laporan akhir terintegrasi dalam Bahasa Indonesia.
-`.slice(0, 3000);
+FORMAT LAPORAN AKHIR:
+1. Ringkasan direktur.
+2. Hasil pekerjaan setiap agen.
+3. Hasil yang sudah siap digunakan.
+4. Hal yang perlu diperbaiki.
+5. Informasi yang belum diverifikasi.
+6. Kendala dan risiko.
+7. Keputusan strategis Victoria.
+8. Langkah berikutnya.
 
+Buat laporan akhir yang jelas, lengkap, dan profesional dalam Bahasa Indonesia.
+`;
 
   let victoriaReport = '';
 
@@ -381,12 +419,20 @@ Buat laporan akhir terintegrasi dalam Bahasa Indonesia.
       ? result
       : JSON.stringify(result, null, 2);
 
+    try {
+      const parsed = JSON.parse(victoriaReport);
+      victoriaReport =
+        parsed.choices?.[0]?.message?.content ||
+        parsed.result?.choices?.[0]?.message?.content ||
+        victoriaReport;
+    } catch (e) {}
+
   } catch (error) {
     victoriaReport =
       'Victoria gagal membuat laporan akhir: ' + error.message;
   }
 
-  // TAHAP 3: LAPORAN AKHIR KANTOR
+  // TAHAP 3: TAMPILKAN LAPORAN SELURUH KANTOR
   const finalReport = `
 LAPORAN KANTOR AI 10 AGEN
 ================================
@@ -399,21 +445,15 @@ ${victoriaReport}
 LAPORAN SEMBILAN AGEN SPESIALIS
 ================================
 
-${reports.map((r, i) =>
-  `${i + 2}. ${r.name}
-Status: ${r.success ? 'BERHASIL' : 'GAGAL'}
+${reports.map((r, i) => `
+${i + 2}. ${r.name}
+STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
 
-${r.report}`
-).join('\n\n================================\n\n')}
+${r.report}
+`).join('\n================================\n')}
 `;
 
   out.textContent = finalReport;
-
-  const agentOutput = document.getElementById('agentOutput');
-
-  if (agentOutput) {
-    agentOutput.textContent = finalReport;
-  }
 }
 
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
