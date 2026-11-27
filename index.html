@@ -169,23 +169,57 @@ function buildAgents() {
   ).join('');
 }
 
+
 async function callAgentAPI(i, ctx) {
   const role = agents[i][0];
   const task = agents[i][1];
 
-  const prompt = `Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.
-Berikan hasil kerja praktis dan terstruktur dalam Bahasa Indonesia.
-Jangan mengarang data produk, harga, komisi, ulasan, atau klaim.
-Tandai informasi yang perlu diverifikasi.
-Konteks pengguna:
-${ctx}`;
+  const prompt = `
+KAMU ADALAH ${role} DI AFFILIATE CREATOR STUDIO.
+
+IDENTITAS:
+Kamu adalah agen spesialis dengan tanggung jawab khusus.
+Kamu bekerja di bawah koordinasi Victoria sebagai Manager Agent.
+
+TUGAS UTAMA:
+${task}
+
+KONTEKS BISNIS:
+Niche utama: CAMPURAN.
+Platform: TikTok, YouTube Shorts, Instagram, Facebook.
+Perangkat kerja: HP Android.
+Target: Membangun bisnis affiliate dan konten kreator.
+
+INSTRUKSI KERJA:
+1. Kerjakan tugas sesuai spesialisasimu.
+2. Jangan mengambil alih tugas agen lain.
+3. Gunakan hasil kerja yang praktis dan terstruktur.
+4. Jangan mengarang harga, komisi, data penjualan, atau spesifikasi produk.
+5. Tandai informasi yang belum diverifikasi.
+6. Berikan rekomendasi yang bisa langsung diterapkan.
+
+KONTEKS DAN INSTRUKSI CEO:
+${ctx}
+
+FORMAT HASIL:
+- Identitas agen
+- Analisis tugas
+- Hasil pekerjaan
+- Rekomendasi
+- Hal yang perlu diverifikasi
+- Langkah berikutnya
+
+Jawab dalam Bahasa Indonesia yang profesional.
+`;
 
   const response = await fetch(
     'https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai',
     {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({prompt})
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt })
     }
   );
 
@@ -197,6 +231,7 @@ ${ctx}`;
 
   return data.result;
 }
+
 async function runAgent(i) {
 const ctx = document.getElementById('ctx' + i).value.trim();
 if (!ctx) { alert('Masukkan konteks produk atau tugas dahulu'); return; }
