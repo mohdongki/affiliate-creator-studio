@@ -308,30 +308,42 @@ async function runAllAgents() {
   out.textContent =
     'Victoria sedang memeriksa dan menggabungkan 9 laporan...';
 
-  const summary = reports.map((r, i) =>
-    `AGEN ${i + 2}: ${r.name}\n` +
-    `Status: ${r.success ? 'Berhasil' : 'Gagal'}\n` +
-    `Hasil: ${r.report.slice(0, 240)}`
-  ).join('\n\n');
+  
+const summary = reports.map((r, i) => {
+  let content = r.report || '';
 
-  const managerContext = `
+  try {
+    const parsed = JSON.parse(content);
+    content =
+      parsed.choices?.[0]?.message?.content ||
+      parsed.result?.choices?.[0]?.message?.content ||
+      content;
+  } catch (e) {}
+
+  return `AGEN ${i + 2}: ${r.name}
+STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
+HASIL: ${String(content).replace(/\s+/g, ' ').slice(0, 180)}`;
+}).join('\n\n');
+
+const managerContext = `
 INSTRUKSI ASLI CEO:
-${ctx.slice(0, 700)}
+${ctx.slice(0, 500)}
 
-SEMBILAN LAPORAN SPESIALIS:
+LAPORAN SEMBILAN AGEN:
 ${summary}
 
-TUGAS KHUSUS VICTORIA:
-1. Analisis seluruh hasil kerja sembilan agen.
-2. Gabungkan hasil yang saling berkaitan.
-3. Temukan kekurangan dan kesalahan strategi.
-4. Tentukan prioritas pekerjaan.
-5. Buat keputusan strategis untuk bisnis affiliate.
-6. Berikan instruksi lanjutan kepada setiap agen.
-7. Jangan mengarang data yang tidak tersedia.
+TUGAS VICTORIA:
+1. Analisis hasil sembilan agen.
+2. Gabungkan hasil yang berkaitan.
+3. Temukan kekurangan.
+4. Tentukan prioritas.
+5. Buat keputusan strategis.
+6. Berikan instruksi lanjutan.
+7. Jangan mengarang data.
 
-Buat satu laporan akhir yang terintegrasi dalam Bahasa Indonesia.
-`;
+Buat laporan akhir terintegrasi dalam Bahasa Indonesia.
+`.slice(0, 3000);
+
 
   let victoriaReport = '';
 
