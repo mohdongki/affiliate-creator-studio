@@ -154,16 +154,48 @@ function agentTemplate(i,ctx){let p=ctx.trim()||'[Nama produk dan detail produk]
 `CHECKLIST PUBLIKASI\nProduk: ${p}\n□ Video vertikal dan audio jelas\n□ Klaim dan harga sudah dicek\n□ Caption dan CTA tersedia\n□ Link affiliate sudah diuji\n□ Disclosure affiliate ditambahkan sesuai aturan platform\n□ Jadwal dan URL posting dicatat`,  
 `ANALISIS PERFORMA\nProduk: ${p}\nCatat per konten: tayangan, klik, pesanan, komisi, tanggal, platform.\nCTR = klik ÷ tayangan × 100% (jika tayangan tersedia).\nKonversi = pesanan ÷ klik × 100%.\nBandingkan konten pada periode yang setara; jangan simpulkan dari data terlalu sedikit.`  
 ];return templates[i]}  
-function buildAgents(){agentGrid.innerHTML=agents.map((a,i)=>`<div class="agent"><strong>${i+1}. ${a[0]}</strong><small>${a[1]}</small><label style="margin-top:9px">Konteks produk / tugas<textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea></label><button onclick="runAgent(${i})">Jalankan agent</button></div>`).join('')}  async function callAgentAPI(i, ctx) {
-const role = agents[i][0];
-const task = agents[i][1];
-const prompt = Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.   Berikan hasil kerja yang praktis, terstruktur, dalam Bahasa Indonesia. Jangan mengarang data produk, harga, komisi, ulasan, atau klaim yang tidak diberikan. Tandai informasi yang perlu diverifikasi.   Konteks dan instruksi pengguna:   ${ctx};
-const response = await fetch('https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai', {
-method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({prompt})
-});
-const data = await response.json();
-if (!response.ok || !data.success) throw new Error(data.error || 'AI gagal memproses tugas');
-return data.result;
+
+function buildAgents() {
+  agentGrid.innerHTML = agents.map((a, i) =>
+    `<div class="agent">
+      <strong>${i+1}. ${a[0]}</strong>
+      <small>${a[1]}</small>
+      <label style="margin-top:9px">
+        Konteks produk / tugas
+        <textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea>
+      </label>
+      <button onclick="runAgent(${i})">Jalankan agent</button>
+    </div>`
+  ).join('');
+}
+
+async function callAgentAPI(i, ctx) {
+  const role = agents[i][0];
+  const task = agents[i][1];
+
+  const prompt = `Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.
+Berikan hasil kerja praktis dan terstruktur dalam Bahasa Indonesia.
+Jangan mengarang data produk, harga, komisi, ulasan, atau klaim.
+Tandai informasi yang perlu diverifikasi.
+Konteks pengguna:
+${ctx}`;
+
+  const response = await fetch(
+    'https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai',
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({prompt})
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.error || 'AI gagal memproses tugas');
+  }
+
+  return data.result;
 }
 async function runAgent(i) {
 const ctx = document.getElementById('ctx' + i).value.trim();
@@ -178,8 +210,14 @@ agentOutput.textContent = 'Terjadi kesalahan: ' + error.message + '\nPeriksa kon
 }
 const officePeople = ['🧑🏻‍💻','👩🏻‍💼','🧑🏽‍💼','👩🏼‍💻','🧑🏻‍🔬','👨🏻‍💼','👩🏽‍💻','👨🏼‍🎨','👩🏻‍📊','🧑🏽‍💻'];
 function buildOffice() {
-const list=document.getElementById('officeAgentList');
-list.innerHTML=agents.map((a,i)=><button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>).join('');
+  const list = document.getElementById('officeAgentList');
+
+  list.innerHTML = agents.map((a, i) =>
+    `<button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})">
+      <span>${officePeople[i]}</span>
+      ${i+1}. ${a[0]}
+    </button>`
+  ).join('');
 }
 function selectOfficeAgent(i) {
 go('agents');
@@ -191,25 +229,49 @@ field.focus();
 agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konteks tugas lalu tekan Jalankan agent.';
 }
 }
+
 async function runAllAgents() {
-const ctx = document.getElementById('allAgentContext').value.trim();
-if (!ctx) { alert('Tuliskan instruksi untuk kantor terlebih dahulu.'); return; }
-const out = document.getElementById('allAgentOutput');
-out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
-const results = [];
-for (let i=0;i<agents.length;i++) {
-out.textContent = Victoria: ${i+1}/10 – ${agents[i][0]} sedang bekerja...;
-try {
-const result = await callAgentAPI(i, ctx);
-results.push(=== ${i+1}. ${agents[i][0]} ===\n${typeof result==='string'?result:JSON.stringify(result,null,2)});
-} catch (e) {
-results.push(=== ${i+1}. ${agents[i][0]} ===\nGagal: ${e.message});
+  const ctx = document.getElementById('allAgentContext').value.trim();
+
+  if (!ctx) {
+    alert('Tuliskan instruksi untuk kantor terlebih dahulu.');
+    return;
+  }
+
+  const out = document.getElementById('allAgentOutput');
+  out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
+
+  const results = [];
+
+  for (let i = 0; i < agents.length; i++) {
+    out.textContent = `Victoria: ${i + 1}/10 - ${agents[i][0]} sedang bekerja...`;
+
+    try {
+      const result = await callAgentAPI(i, ctx);
+
+      results.push(
+        `=== ${i + 1}. ${agents[i][0]} ===\n${
+          typeof result === 'string'
+            ? result
+            : JSON.stringify(result, null, 2)
+        }`
+      );
+
+    } catch (e) {
+      results.push(
+        `=== ${i + 1}. ${agents[i][0]} ===\nGagal: ${e.message}`
+      );
+    }
+
+    out.textContent = results.join('\n\n');
+  }
+
+  out.textContent =
+    'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
+
+  agentOutput.textContent = out.textContent;
 }
-out.textContent = results.join('\n\n');
-}
-out.textContent = 'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
-agentOutput.textContent = out.textContent;
-}
+
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
 function downloadOutput(){let b=new Blob([agentOutput.textContent],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='output-agent.txt';a.click();URL.revokeObjectURL(a.href)}
 function backup(){let b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='affiliate-studio-backup.json';a.click();URL.revokeObjectURL(a.href)}
