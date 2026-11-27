@@ -1,29 +1,26 @@
-<!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<title>Affiliate Creator Studio</title>
-<style>
-:root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233a;--line:#263550;--text:#edf3ff;--muted:#91a1bc;--blue:#7aa7ff;--green:#4ed6a0;--yellow:#f4c96b;--red:#ff7d8a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#081326;font-weight:700}
-button.secondary{background:#24324c;color:var(--text);border:1px solid var(--line)}button.danger{background:#4a2632;color:#ffdce1}
-.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.side{background:#0e1628;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh}
-.brand{font-size:17px;font-weight:800;margin:0 8px 24px}.brand span{color:var(--blue)}.nav{display:grid;gap:7px}.nav button{background:transparent;color:var(--muted);text-align:left;font-weight:600}.nav button.active,.nav button:hover{background:#1a2944;color:var(--text)}
-.side-note{position:absolute;bottom:18px;left:18px;right:18px;color:var(--muted);font-size:12px}
-main{padding:26px;max-width:1400px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1{font-size:26px;margin:3px 0}h2{font-size:18px;margin:0 0 14px}.muted{color:var(--muted)}.pill{font-size:11px;border:1px solid var(--line);border-radius:30px;padding:4px 9px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.metric{font-size:26px;font-weight:800;margin-top:7px}.metric-label{font-size:13px;color:var(--muted)}.section{display:none}.section.active{display:block}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}td{overflow-wrap:anywhere}.table-wrap{overflow:auto}
-.formrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}label{display:grid;gap:5px;color:var(--muted);font-size:12px;margin-bottom:10px}input,select,textarea{width:100%;padding:10px 11px;border-radius:9px;border:1px solid var(--line);background:#0d1526;color:var(--text)}textarea{min-height:100px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.agent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.agent{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}.agent strong{display:block}.agent small{color:var(--muted)}.output{white-space:pre-wrap;background:#0b1425;border:1px solid var(--line);padding:13px;border-radius:10px;margin-top:12px;min-height:65px}
-.notice{background:#2a281b;border:1px solid #65552a;color:#f8df9c;padding:12px;border-radius:12px;font-size:13px;margin:0 0 15px}
-.empty{padding:22px;text-align:center;color:var(--muted)}.bar{height:9px;border-radius:10px;background:#263550;overflow:hidden}.bar span{display:block;height:100%;background:var(--green)}
-.mobilebar{display:none}.small{font-size:12px}.right{display:flex;gap:8px;align-items:center}
-@media(max-width:850px){.app{display:block}.side{display:none}main{padding:18px 14px 90px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.mobilebar{display:grid;position:fixed;bottom:0;left:0;right:0;background:#0e1628;border-top:1px solid var(--line);grid-template-columns:repeat(6,1fr);padding:6px;z-index:5}.mobilebar button{background:transparent;color:var(--muted);padding:8px 2px;font-size:11px}.mobilebar button.active{color:var(--blue)}.agent-grid{grid-template-columns:1fr}.top{align-items:flex-start}.top h1{font-size:22px}}
-@media(max-width:420px){.grid{gap:9px}.card{padding:13px}.metric{font-size:22px}.formrow{grid-template-columns:1fr}}
-
-/* ===== 3D AI OFFICE ===== */
+<!doctype html>  <html lang="id">  
+<head>  
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">  
+<meta name="theme-color" content="#0b1020">  
+<title>Affiliate Creator Studio</title>  
+<style>  
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233a;--line:#263550;--text:#edf3ff;--muted:#91a1bc;--blue:#7aa7ff;--green:#4ed6a0;--yellow:#f4c96b;--red:#ff7d8a}  
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}  
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:var(--blue);color:#081326;font-weight:700}  
+button.secondary{background:#24324c;color:var(--text);border:1px solid var(--line)}button.danger{background:#4a2632;color:#ffdce1}  
+.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.side{background:#0e1628;border-right:1px solid var(--line);padding:22px 14px;position:sticky;top:0;height:100vh}  
+.brand{font-size:17px;font-weight:800;margin:0 8px 24px}.brand span{color:var(--blue)}.nav{display:grid;gap:7px}.nav button{background:transparent;color:var(--muted);text-align:left;font-weight:600}.nav button.active,.nav button:hover{background:#1a2944;color:var(--text)}  
+.side-note{position:absolute;bottom:18px;left:18px;right:18px;color:var(--muted);font-size:12px}  
+main{padding:26px;max-width:1400px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}h1{font-size:26px;margin:3px 0}h2{font-size:18px;margin:0 0 14px}.muted{color:var(--muted)}.pill{font-size:11px;border:1px solid var(--line);border-radius:30px;padding:4px 9px;color:var(--muted)}  
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.metric{font-size:26px;font-weight:800;margin-top:7px}.metric-label{font-size:13px;color:var(--muted)}.section{display:none}.section.active{display:block}.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}  
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}td{overflow-wrap:anywhere}.table-wrap{overflow:auto}  
+.formrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}label{display:grid;gap:5px;color:var(--muted);font-size:12px;margin-bottom:10px}input,select,textarea{width:100%;padding:10px 11px;border-radius:9px;border:1px solid var(--line);background:#0d1526;color:var(--text)}textarea{min-height:100px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}  
+.agent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.agent{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}.agent strong{display:block}.agent small{color:var(--muted)}.output{white-space:pre-wrap;background:#0b1425;border:1px solid var(--line);padding:13px;border-radius:10px;margin-top:12px;min-height:65px}  
+.notice{background:#2a281b;border:1px solid #65552a;color:#f8df9c;padding:12px;border-radius:12px;font-size:13px;margin:0 0 15px}  
+.empty{padding:22px;text-align:center;color:var(--muted)}.bar{height:9px;border-radius:10px;background:#263550;overflow:hidden}.bar span{display:block;height:100%;background:var(--green)}  
+.mobilebar{display:none}.small{font-size:12px}.right{display:flex;gap:8px;align-items:center}  
+@media(max-width:850px){.app{display:block}.side{display:none}main{padding:18px 14px 90px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.mobilebar{display:grid;position:fixed;bottom:0;left:0;right:0;background:#0e1628;border-top:1px solid var(--line);grid-template-columns:repeat(6,1fr);padding:6px;z-index:5}.mobilebar button{background:transparent;color:var(--muted);padding:8px 2px;font-size:11px}.mobilebar button.active{color:var(--blue)}.agent-grid{grid-template-columns:1fr}.top{align-items:flex-start}.top h1{font-size:22px}}  
+@media(max-width:420px){.grid{gap:9px}.card{padding:13px}.metric{font-size:22px}.formrow{grid-template-columns:1fr}}  /* ===== 3D AI OFFICE ===== */
 .office-wrap{background:linear-gradient(145deg,#071329,#101f3c 55%,#091326);border:1px solid #29466e;border-radius:20px;padding:16px;overflow:hidden;position:relative}
 .office-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .office-scene{height:440px;position:relative;perspective:1000px;perspective-origin:50% 42%;overflow:hidden;border-radius:16px;background:radial-gradient(ellipse at 50% 60%,#1b4770 0,#102541 42%,#081326 78%)}
@@ -52,12 +49,11 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 .office-agent-chip span{display:block;font-size:22px}
 @media(max-width:700px){.office-scene{height:510px}.office-desk{width:82px}.office-desk .person{font-size:29px}.office-desk .desk-label{font-size:9px}.office-desk .desk-label b{font-size:10px}.office-desk .monitor{width:58px;height:23px}.office-desk.agent-pos-0{left:1%;top:48%}.office-desk.agent-pos-1{left:17%;top:43%}.office-desk.agent-pos-2{left:33%;top:48%}.office-desk.agent-pos-3{right:33%;top:48%}.office-desk.agent-pos-4{right:17%;top:43%}.office-desk.agent-pos-5{right:1%;top:48%}.office-desk.agent-pos-6{left:4%;top:72%}.office-desk.agent-pos-7{left:25%;top:77%}.office-desk.agent-pos-8{right:25%;top:77%}.office-desk.agent-pos-9{right:4%;top:72%}.office-desk.manager{top:62%}.office-agent-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-
 /* ISOMETRIC SIMULATION OFFICE */
 .office-wrap{background:#101a2b;border:1px solid #31435c;border-radius:18px;padding:14px;overflow:hidden}
 .office-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .office-world{position:relative;width:100%;height:min(68vh,620px);min-height:390px;background:linear-gradient(#b8c5d2,#d9e0e5);border:1px solid #526a83;border-radius:14px;overflow:hidden;touch-action:pan-y}
-#officeCanvas{display:block;width:100%;height:100%;outline:none}
+#officeCanvas{display:block;width:100%;height:100%;outline:none;background:linear-gradient(145deg,#dce5ec,#9eafbd)}
 .office-hud{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;flex-wrap:wrap}
 .office-hud span{background:#101b2ddd;color:#eaf3ff;border:1px solid #ffffff35;border-radius:9px;padding:6px 9px;font-size:11px;backdrop-filter:blur(8px)}
 .office-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
@@ -70,157 +66,149 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 @media(max-width:700px){.office-world{height:510px;min-height:420px}.office-agent-list{grid-template-columns:repeat(2,minmax(0,1fr))}.office-wrap{padding:9px}}
 
 </style></head>
-<body>
-<div class="app">
-<aside class="side"><div class="brand">✦ Affiliate <span>Creator</span><br>Studio</div><nav class="nav" id="sideNav">
-<button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button><button data-page="office3d">🏢 &nbsp; Kantor 3D</button><button data-page="products">▣ &nbsp; Produk</button><button data-page="content">✎ &nbsp; Konten</button><button data-page="transactions">↗ &nbsp; Transaksi</button><button data-page="agents">✧ &nbsp; 10 AI Agent</button><button data-page="reports">▤ &nbsp; Laporan</button><button data-page="settings">⚙ &nbsp; Pengaturan</button></nav>
-<div class="side-note">Versi awal • Data tersimpan di perangkat ini<br><span class="pill">Local demo</span></div></aside>
-<main>
-<header class="top"><div><div class="eyebrow">Creator workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small">Kelola produk, konten, dan performa affiliate.</div></div><div class="right"><span class="pill">● Offline-ready</span></div></header>
-<div class="notice">Mode awal: data disimpan di browser HP ini. Sepuluh agent menyediakan alur dan template kerja lokal; untuk jawaban AI generatif sungguhan, sambungkan API backend yang aman. Jangan masukkan API key di halaman publik.</div>
 
-<section id="office3d" class="section">
- <div class="office-wrap">
-  <div class="office-top"><div><div class="eyebrow">Virtual headquarters</div><h2 style="margin:3px 0">Kantor AI 10 Agen – Virtual Office</h2><div class="small muted">Simulasi kantor 3D isometrik. Geser untuk memutar, cubit untuk zoom, sentuh agen untuk memilih.</div></div><span class="pill">✦ Affiliate Creator Studio</span></div>
-  <div class="office-world" id="officeWorld"><canvas id="officeCanvas" aria-label="Simulasi kantor 3D"></canvas><div class="office-hud"><span>🏢 LANTAI 01 • AI OFFICE</span><span id="officeClock">● LIVE SIMULATION</span></div></div>
-  <div class="office-controls"><button onclick="officeSetMode('work')">▶ Mulai bekerja</button><button class="secondary" onclick="officeSetMode('meeting')">👥 Mulai rapat</button><button class="secondary" onclick="officeResetView()">↻ Atur sudut kamera</button><button class="secondary" onclick="go('agents')">Pusat kendali AI</button></div>
-  <div class="office-selected"><div><div class="small muted">AGEN TERPILIH</div><strong id="officeSelectedName">Victoria • Chief Manager</strong><div class="small muted" id="officeSelectedStatus">Siap menerima instruksi</div></div><button onclick="officeSendSelectedToAgents()">Beri tugas</button></div>
-  <div class="office-agent-list" id="officeAgentList"></div>
- </div>
- <div class="card" style="margin-top:14px"><div class="card-head"><h2>Meja Direktur – Victoria</h2><span class="pill">Chief Manager</span></div><p class="muted small">Tulis instruksi rapat atau pekerjaan. Tombol rapat menggerakkan karakter ke meja rapat sebagai simulasi visual; pemrosesan AI dilakukan saat tugas dikirim.</p><label>Instruksi untuk seluruh kantor<textarea id="allAgentContext" placeholder="Contoh: Riset produk botol minum 1 liter dan susun strategi konten affiliate."></textarea></label><button onclick="runAllAgents()">Kirim tugas ke 10 agen</button><div id="allAgentOutput" class="output">Laporan kerja kantor akan muncul di sini.</div></div>
-</section>
-
-<section id="dashboard" class="section active">
-<div class="grid">
-<div class="card"><div class="metric-label">Total Produk</div><div class="metric" id="mProducts">0</div></div>
-<div class="card"><div class="metric-label">Konten Direncanakan</div><div class="metric" id="mContent">0</div></div>
-<div class="card"><div class="metric-label">Total Klik</div><div class="metric" id="mClicks">0</div></div>
-<div class="card"><div class="metric-label">Komisi Tercatat</div><div class="metric" id="mCommission">Rp0</div></div>
-</div>
-<div class="two"><div class="card"><div class="card-head"><h2>Aktivitas terbaru</h2><button class="secondary" onclick="go('transactions')">Lihat transaksi</button></div><div id="recent" class="empty">Belum ada aktivitas. Tambahkan produk atau transaksi pertama.</div></div>
-<div class="card"><h2>Mulai dari sini</h2><p class="muted small">1. Tambahkan produk yang ingin dipromosikan.<br>2. Buat ide dan naskah konten.<br>3. Catat klik, pesanan, dan komisi sesuai dashboard platform affiliate.<br>4. Evaluasi hasil di laporan.</p><button onclick="go('products')">＋ Tambah produk</button></div></div>
-</section>
-<section id="products" class="section">
-<div class="card"><div class="card-head"><h2>Tambah produk affiliate</h2><span class="pill">Data lokal</span></div>
-<form id="productForm"><div class="formrow"><label>Nama produk<input name="name" required placeholder="Contoh: Botol minum 1 liter"></label><label>Platform<select name="platform"><option>Shopee</option><option>TikTok Shop</option><option>Lazada</option><option>Tokopedia</option><option>Lainnya</option></select></label><label>Harga (Rp)<input name="price" type="number" min="0" placeholder="150000"></label><label>Link affiliate<input name="link" type="url" placeholder="https://..."></label></div><label>Catatan / keunggulan<textarea name="notes" placeholder="Fitur, manfaat, target pembeli..."></textarea></label><button>Simpan produk</button></form></div>
-<div class="card" style="margin-top:14px"><div class="card-head"><h2>Daftar produk</h2><span id="productCount" class="pill">0 item</span></div><div class="table-wrap"><table><thead><tr><th>Produk</th><th>Platform</th><th>Harga</th><th>Link</th><th></th></tr></thead><tbody id="productsBody"></tbody></table></div></div>
-</section>
-<section id="content" class="section">
-<div class="card"><div class="card-head"><h2>Rencana konten</h2><span class="pill">Kalender sederhana</span></div><form id="contentForm"><div class="formrow"><label>Judul / ide konten<input name="title" required placeholder="3 alasan produk ini berguna"></label><label>Platform<select name="platform"><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>Facebook</option></select></label><label>Tanggal rencana<input name="date" type="date"></label><label>Status<select name="status"><option>Ide</option><option>Draft</option><option>Siap posting</option><option>Sudah posting</option></select></label></div><label>Catatan<textarea name="notes" placeholder="Angle, CTA, atau link produk"></textarea></label><button>Simpan rencana</button></form></div>
-<div class="card" style="margin-top:14px"><h2>Daftar konten</h2><div class="table-wrap"><table><thead><tr><th>Judul</th><th>Platform</th><th>Tanggal</th><th>Status</th><th></th></tr></thead><tbody id="contentBody"></tbody></table></div></div>
-</section>
-<section id="transactions" class="section">
-<div class="card"><h2>Catat performa</h2><form id="transactionForm"><div class="formrow"><label>Produk<select name="product" id="transactionProduct"></select></label><label>Tanggal<input name="date" type="date"></label><label>Klik<input name="clicks" type="number" min="0" value="0"></label><label>Pesanan<input name="orders" type="number" min="0" value="0"></label><label>Komisi (Rp)<input name="commission" type="number" min="0" value="0"></label><label>Platform<select name="platform"><option>Shopee</option><option>TikTok Shop</option><option>Lazada</option><option>Tokopedia</option><option>Lainnya</option></select></label></div><button>Simpan transaksi</button></form></div>
-<div class="card" style="margin-top:14px"><h2>Riwayat transaksi</h2><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Produk</th><th>Klik</th><th>Pesanan</th><th>Komisi</th><th></th></tr></thead><tbody id="transactionsBody"></tbody></table></div></div>
-</section>
-<section id="agents" class="section">
-<div class="card"><h2>Pusat kendali 10 AI Agent</h2><p class="muted small">Pilih agent, masukkan konteks produk, lalu buat output berbasis template lokal. Output ini adalah draf awal, bukan hasil model AI eksternal.</p><div class="agent-grid" id="agentGrid"></div><div id="agentOutput" class="output">Output agent akan muncul di sini.</div><div class="actions"><button class="secondary" onclick="copyOutput()">Salin output</button><button class="secondary" onclick="downloadOutput()">Unduh .txt</button></div></div>
-</section>
-<section id="reports" class="section">
-<div class="grid"><div class="card"><div class="metric-label">Klik</div><div class="metric" id="rClicks">0</div></div><div class="card"><div class="metric-label">Pesanan</div><div class="metric" id="rOrders">0</div></div><div class="card"><div class="metric-label">Konversi</div><div class="metric" id="rConversion">0%</div></div><div class="card"><div class="metric-label">Komisi</div><div class="metric" id="rCommission">Rp0</div></div></div>
-<div class="card" style="margin-top:14px"><div class="card-head"><h2>Ringkasan</h2><button class="secondary" onclick="exportCSV()">Ekspor CSV</button></div><p id="reportText" class="muted">Belum ada data transaksi.</p><div class="bar"><span id="conversionBar" style="width:0%"></span></div><p class="small muted">Rasio pesanan terhadap klik (berdasarkan data yang kamu catat).</p></div></section>
-<section id="settings" class="section"><div class="card"><h2>Pengaturan & cadangan data</h2><p class="muted small">Data tersimpan di localStorage browser pada perangkat ini. Hapus data browser dapat menghilangkan data, jadi ekspor cadangan secara berkala.</p><div class="actions"><button onclick="backup()">Unduh cadangan JSON</button><label style="margin:0"><input type="file" accept="application/json" id="restoreFile"></label><button class="secondary" onclick="restore()">Pulihkan JSON</button><button class="danger" onclick="clearData()">Hapus semua data</button></div><p class="small muted">Nama workspace: Affiliate Creator Studio • Versi 1.0 awal</p></div></section>
-</main></div>
-<nav class="mobilebar" id="mobileNav"><button class="active" data-page="dashboard">▦<br>Home</button><button data-page="office3d">🏢<br>Kantor 3D</button><button data-page="products">▣<br>Produk</button><button data-page="content">✎<br>Konten</button><button data-page="agents">✧<br>Agent</button><button data-page="reports">▤<br>Laporan</button></nav>
-<script>
-const KEY='acs_v1';
-let state=load();
-const agents=[
-['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']
-];
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{products:[],contents:[],transactions:[]}}catch(e){return {products:[],contents:[],transactions:[]}}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
-function money(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0)}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));document.getElementById('pageTitle').textContent=({dashboard:'Dashboard',office3d:'Kantor AI 3D',products:'Produk Affiliate',content:'Rencana Konten',transactions:'Transaksi',agents:'10 AI Agent',reports:'Laporan',settings:'Pengaturan'})[page];render()}
-document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
-document.getElementById('productForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.products.push({id:Date.now(),name:f.get('name'),platform:f.get('platform'),price:+f.get('price')||0,link:f.get('link'),notes:f.get('notes')});e.target.reset();save();alert('Produk disimpan di perangkat ini.')});
-document.getElementById('contentForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.contents.push({id:Date.now(),title:f.get('title'),platform:f.get('platform'),date:f.get('date'),status:f.get('status'),notes:f.get('notes')});e.target.reset();save();alert('Rencana konten disimpan.')});
-document.getElementById('transactionForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.transactions.push({id:Date.now(),product:f.get('product'),date:f.get('date'),clicks:+f.get('clicks')||0,orders:+f.get('orders')||0,commission:+f.get('commission')||0,platform:f.get('platform')});e.target.reset();save();alert('Transaksi disimpan.')});
-function del(type,id){if(confirm('Hapus item ini?')){state[type]=state[type].filter(x=>x.id!==id);save()}}
-function render(){
-const clicks=state.transactions.reduce((a,x)=>a+x.clicks,0),orders=state.transactions.reduce((a,x)=>a+x.orders,0),comm=state.transactions.reduce((a,x)=>a+x.commission,0);
-mProducts.textContent=state.products.length;mContent.textContent=state.contents.length;mClicks.textContent=clicks.toLocaleString('id-ID');mCommission.textContent=money(comm);
-productCount.textContent=state.products.length+' item';
-productsBody.innerHTML=state.products.map(p=>`<tr><td><b>${esc(p.name)}</b><br><span class="muted">${esc(p.notes)}</span></td><td>${esc(p.platform)}</td><td>${money(p.price)}</td><td>${p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener">Buka</a>`:'-'}</td><td><button class="danger" onclick="del('products',${p.id})">×</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada produk.</td></tr>';
-contentBody.innerHTML=state.contents.map(c=>`<tr><td>${esc(c.title)}</td><td>${esc(c.platform)}</td><td>${esc(c.date||'-')}</td><td>${esc(c.status)}</td><td><button class="danger" onclick="del('contents',${c.id})">×</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada rencana konten.</td></tr>';
-transactionProduct.innerHTML=state.products.map(p=>`<option>${esc(p.name)}</option>`).join('')||'<option>Produk belum ditambahkan</option>';
-transactionsBody.innerHTML=state.transactions.map(t=>`<tr><td>${esc(t.date||'-')}</td><td>${esc(t.product)}</td><td>${t.clicks}</td><td>${t.orders}</td><td>${money(t.commission)}</td><td><button class="danger" onclick="del('transactions',${t.id})">×</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada transaksi.</td></tr>';
-rClicks.textContent=clicks.toLocaleString('id-ID');rOrders.textContent=orders.toLocaleString('id-ID');rCommission.textContent=money(comm);let rate=clicks?orders/clicks*100:0;rConversion.textContent=rate.toFixed(1)+'%';conversionBar.style.width=Math.min(rate,100)+'%';reportText.textContent=`Tercatat ${clicks} klik, ${orders} pesanan, dan ${money(comm)} komisi. Data ini berasal dari input manual, bukan sinkronisasi otomatis platform.`;
-recent.innerHTML=state.transactions.length?state.transactions.slice(-4).reverse().map(t=>`<p class="small">${esc(t.date||'Tanpa tanggal')} • ${esc(t.product)} • ${money(t.commission)}</p>`).join(''):'Belum ada aktivitas. Tambahkan produk atau transaksi pertama.';
-}
-function agentTemplate(i,ctx){let p=ctx.trim()||'[Nama produk dan detail produk]';let templates=[
-`PRIORITAS KERJA\nProduk: ${p}\n1. Lengkapi manfaat, harga, komisi, dan link.\n2. Validasi klaim produk dari sumber resmi.\n3. Buat 3 variasi konten.\n4. Catat klik, pesanan, dan komisi.\n5. Evaluasi setelah data terkumpul.`,
-`RISET PRODUK\nProduk: ${p}\nPeriksa: masalah yang diselesaikan, manfaat utama, harga dibanding alternatif, ulasan pembeli, bukti klaim, potensi komisi.\nSkor 1-5 tiap aspek setelah data nyata tersedia. Jangan mengarang spesifikasi.`,
-`TARGET AUDIENS\nProduk: ${p}\nTentukan: siapa yang paling membutuhkan, masalah harian, keberatan sebelum membeli, bahasa yang mereka gunakan, dan alasan percaya.\nUji 2 segmen audiens melalui konten berbeda.`,
-`STRATEGI KONTEN\nProduk: ${p}\nPilar: edukasi penggunaan, demonstrasi, perbandingan jujur, FAQ, pengalaman setelah penggunaan.\nRencana uji: 3 angle, 2 format video, 1 CTA yang jelas.`,
-`NASKAH VIDEO 30 DETIK\nProduk: ${p}\n0-3 dtk: “Masih bingung memilih [kategori produk]?”\n3-8 dtk: Sebut masalah yang relevan.\n8-20 dtk: Tunjukkan 2-3 manfaat yang sudah terverifikasi.\n20-26 dtk: Jelaskan siapa yang cocok.\n26-30 dtk: “Cek detail dan harga melalui link.”`,
-`HOOK & CAPTION\nProduk: ${p}\nHook 1: “Sebelum membeli [kategori], perhatikan 3 hal ini.”\nHook 2: “Ini yang perlu kamu cek dari [kategori produk].”\nCaption: Kenali kebutuhanmu, cek detail produk, bandingkan pilihan, lalu putuskan sesuai kebutuhan.\nCTA: Lihat detail produk di link.`,
-`VIDEO PLAN\nProduk: ${p}\nShot 1: close-up produk dan nama.\nShot 2: masalah/kebutuhan pengguna.\nShot 3: demo fitur yang benar-benar ada.\nShot 4: detail ukuran/varian/isi paket.\nShot 5: ringkasan dan CTA.\nTambahkan teks layar dan subtitle.`,
-`SEO & HASHTAG\nProduk: ${p}\nKata kunci: nama kategori, fungsi utama, kebutuhan pengguna, cara penggunaan.\nHashtag awal: #affiliateindonesia #rekomendasiproduk #reviewproduk #tipsbelanja\nSesuaikan dengan platform dan kata yang benar-benar dicari audiens.`,
-`CHECKLIST PUBLIKASI\nProduk: ${p}\n□ Video vertikal dan audio jelas\n□ Klaim dan harga sudah dicek\n□ Caption dan CTA tersedia\n□ Link affiliate sudah diuji\n□ Disclosure affiliate ditambahkan sesuai aturan platform\n□ Jadwal dan URL posting dicatat`,
-`ANALISIS PERFORMA\nProduk: ${p}\nCatat per konten: tayangan, klik, pesanan, komisi, tanggal, platform.\nCTR = klik ÷ tayangan × 100% (jika tayangan tersedia).\nKonversi = pesanan ÷ klik × 100%.\nBandingkan konten pada periode yang setara; jangan simpulkan dari data terlalu sedikit.`
-];return templates[i]}
-function buildAgents(){agentGrid.innerHTML=agents.map((a,i)=>`<div class="agent"><strong>${i+1}. ${a[0]}</strong><small>${a[1]}</small><label style="margin-top:9px">Konteks produk / tugas<textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea></label><button onclick="runAgent(${i})">Jalankan agent</button></div>`).join('')}
-
-async function callAgentAPI(i, ctx) {
-  const role = agents[i][0];
-  const task = agents[i][1];
-  const prompt = `Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.
-Berikan hasil kerja yang praktis, terstruktur, dalam Bahasa Indonesia. Jangan mengarang data produk, harga, komisi, ulasan, atau klaim yang tidak diberikan. Tandai informasi yang perlu diverifikasi.
-Konteks dan instruksi pengguna:
-${ctx}`;
-  const response = await fetch('https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai', {
-    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({prompt})
-  });
-  const data = await response.json();
-  if (!response.ok || !data.success) throw new Error(data.error || 'AI gagal memproses tugas');
-  return data.result;
+<body>  
+<div class="app">  
+<aside class="side"><div class="brand">✦ Affiliate <span>Creator</span><br>Studio</div><nav class="nav" id="sideNav">  
+<button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button><button data-page="office3d">🏢 &nbsp; Kantor 3D</button><button data-page="products">▣ &nbsp; Produk</button><button data-page="content">✎ &nbsp; Konten</button><button data-page="transactions">↗ &nbsp; Transaksi</button><button data-page="agents">✧ &nbsp; 10 AI Agent</button><button data-page="reports">▤ &nbsp; Laporan</button><button data-page="settings">⚙ &nbsp; Pengaturan</button></nav>  
+<div class="side-note">Versi awal • Data tersimpan di perangkat ini<br><span class="pill">Local demo</span></div></aside>  
+<main>  
+<header class="top"><div><div class="eyebrow">Creator workspace</div><h1 id="pageTitle">Dashboard</h1><div class="muted small">Kelola produk, konten, dan performa affiliate.</div></div><div class="right"><span class="pill">● Offline-ready</span></div></header>  
+<div class="notice">Mode awal: data disimpan di browser HP ini. Sepuluh agent menyediakan alur dan template kerja lokal; untuk jawaban AI generatif sungguhan, sambungkan API backend yang aman. Jangan masukkan API key di halaman publik.</div>  <section id="office3d" class="section">  
+ <div class="office-wrap">  
+  <div class="office-top"><div><div class="eyebrow">Virtual headquarters</div><h2 style="margin:3px 0">Kantor AI 10 Agen – Virtual Office</h2><div class="small muted">Simulasi kantor 3D isometrik. Geser untuk memutar, cubit untuk zoom, sentuh agen untuk memilih.</div></div><span class="pill">✦ Affiliate Creator Studio</span></div>  
+  <div class="office-world" id="officeWorld"><canvas id="officeCanvas" aria-label="Simulasi kantor 3D"></canvas><div class="office-hud"><span>🏢 LANTAI 01 • AI OFFICE</span><span id="officeClock">● MEMUAT SIMULASI</span></div></div>  
+  <div class="office-controls"><button onclick="officeSetMode('work')">▶ Mulai bekerja</button><button class="secondary" onclick="officeSetMode('meeting')">👥 Mulai rapat</button><button class="secondary" onclick="officeResetView()">↻ Atur sudut kamera</button><button class="secondary" onclick="go('agents')">Pusat kendali AI</button></div>  
+  <div class="office-selected"><div><div class="small muted">AGEN TERPILIH</div><strong id="officeSelectedName">Victoria • Chief Manager</strong><div class="small muted" id="officeSelectedStatus">Siap menerima instruksi</div></div><button onclick="officeSendSelectedToAgents()">Beri tugas</button></div>  
+  <div class="office-agent-list" id="officeAgentList"></div>  
+ </div>  
+ <div class="card" style="margin-top:14px"><div class="card-head"><h2>Meja Direktur – Victoria</h2><span class="pill">Chief Manager</span></div><p class="muted small">Tulis instruksi rapat atau pekerjaan. Tombol rapat menggerakkan karakter ke meja rapat sebagai simulasi visual; pemrosesan AI dilakukan saat tugas dikirim.</p><label>Instruksi untuk seluruh kantor<textarea id="allAgentContext" placeholder="Contoh: Riset produk botol minum 1 liter dan susun strategi konten affiliate."></textarea></label><button onclick="runAllAgents()">Kirim tugas ke 10 agen</button><div id="allAgentOutput" class="output">Laporan kerja kantor akan muncul di sini.</div></div>  
+</section>  <section id="dashboard" class="section active">  
+<div class="grid">  
+<div class="card"><div class="metric-label">Total Produk</div><div class="metric" id="mProducts">0</div></div>  
+<div class="card"><div class="metric-label">Konten Direncanakan</div><div class="metric" id="mContent">0</div></div>  
+<div class="card"><div class="metric-label">Total Klik</div><div class="metric" id="mClicks">0</div></div>  
+<div class="card"><div class="metric-label">Komisi Tercatat</div><div class="metric" id="mCommission">Rp0</div></div>  
+</div>  
+<div class="two"><div class="card"><div class="card-head"><h2>Aktivitas terbaru</h2><button class="secondary" onclick="go('transactions')">Lihat transaksi</button></div><div id="recent" class="empty">Belum ada aktivitas. Tambahkan produk atau transaksi pertama.</div></div>  
+<div class="card"><h2>Mulai dari sini</h2><p class="muted small">1. Tambahkan produk yang ingin dipromosikan.<br>2. Buat ide dan naskah konten.<br>3. Catat klik, pesanan, dan komisi sesuai dashboard platform affiliate.<br>4. Evaluasi hasil di laporan.</p><button onclick="go('products')">＋ Tambah produk</button></div></div>  
+</section>  
+<section id="products" class="section">  
+<div class="card"><div class="card-head"><h2>Tambah produk affiliate</h2><span class="pill">Data lokal</span></div>  
+<form id="productForm"><div class="formrow"><label>Nama produk<input name="name" required placeholder="Contoh: Botol minum 1 liter"></label><label>Platform<select name="platform"><option>Shopee</option><option>TikTok Shop</option><option>Lazada</option><option>Tokopedia</option><option>Lainnya</option></select></label><label>Harga (Rp)<input name="price" type="number" min="0" placeholder="150000"></label><label>Link affiliate<input name="link" type="url" placeholder="https://..."></label></div><label>Catatan / keunggulan<textarea name="notes" placeholder="Fitur, manfaat, target pembeli..."></textarea></label><button>Simpan produk</button></form></div>  
+<div class="card" style="margin-top:14px"><div class="card-head"><h2>Daftar produk</h2><span id="productCount" class="pill">0 item</span></div><div class="table-wrap"><table><thead><tr><th>Produk</th><th>Platform</th><th>Harga</th><th>Link</th><th></th></tr></thead><tbody id="productsBody"></tbody></table></div></div>  
+</section>  
+<section id="content" class="section">  
+<div class="card"><div class="card-head"><h2>Rencana konten</h2><span class="pill">Kalender sederhana</span></div><form id="contentForm"><div class="formrow"><label>Judul / ide konten<input name="title" required placeholder="3 alasan produk ini berguna"></label><label>Platform<select name="platform"><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>Facebook</option></select></label><label>Tanggal rencana<input name="date" type="date"></label><label>Status<select name="status"><option>Ide</option><option>Draft</option><option>Siap posting</option><option>Sudah posting</option></select></label></div><label>Catatan<textarea name="notes" placeholder="Angle, CTA, atau link produk"></textarea></label><button>Simpan rencana</button></form></div>  
+<div class="card" style="margin-top:14px"><h2>Daftar konten</h2><div class="table-wrap"><table><thead><tr><th>Judul</th><th>Platform</th><th>Tanggal</th><th>Status</th><th></th></tr></thead><tbody id="contentBody"></tbody></table></div></div>  
+</section>  
+<section id="transactions" class="section">  
+<div class="card"><h2>Catat performa</h2><form id="transactionForm"><div class="formrow"><label>Produk<select name="product" id="transactionProduct"></select></label><label>Tanggal<input name="date" type="date"></label><label>Klik<input name="clicks" type="number" min="0" value="0"></label><label>Pesanan<input name="orders" type="number" min="0" value="0"></label><label>Komisi (Rp)<input name="commission" type="number" min="0" value="0"></label><label>Platform<select name="platform"><option>Shopee</option><option>TikTok Shop</option><option>Lazada</option><option>Tokopedia</option><option>Lainnya</option></select></label></div><button>Simpan transaksi</button></form></div>  
+<div class="card" style="margin-top:14px"><h2>Riwayat transaksi</h2><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Produk</th><th>Klik</th><th>Pesanan</th><th>Komisi</th><th></th></tr></thead><tbody id="transactionsBody"></tbody></table></div></div>  
+</section>  
+<section id="agents" class="section">  
+<div class="card"><h2>Pusat kendali 10 AI Agent</h2><p class="muted small">Pilih agent, masukkan konteks produk, lalu buat output berbasis template lokal. Output ini adalah draf awal, bukan hasil model AI eksternal.</p><div class="agent-grid" id="agentGrid"></div><div id="agentOutput" class="output">Output agent akan muncul di sini.</div><div class="actions"><button class="secondary" onclick="copyOutput()">Salin output</button><button class="secondary" onclick="downloadOutput()">Unduh .txt</button></div></div>  
+</section>  
+<section id="reports" class="section">  
+<div class="grid"><div class="card"><div class="metric-label">Klik</div><div class="metric" id="rClicks">0</div></div><div class="card"><div class="metric-label">Pesanan</div><div class="metric" id="rOrders">0</div></div><div class="card"><div class="metric-label">Konversi</div><div class="metric" id="rConversion">0%</div></div><div class="card"><div class="metric-label">Komisi</div><div class="metric" id="rCommission">Rp0</div></div></div>  
+<div class="card" style="margin-top:14px"><div class="card-head"><h2>Ringkasan</h2><button class="secondary" onclick="exportCSV()">Ekspor CSV</button></div><p id="reportText" class="muted">Belum ada data transaksi.</p><div class="bar"><span id="conversionBar" style="width:0%"></span></div><p class="small muted">Rasio pesanan terhadap klik (berdasarkan data yang kamu catat).</p></div></section>  
+<section id="settings" class="section"><div class="card"><h2>Pengaturan & cadangan data</h2><p class="muted small">Data tersimpan di localStorage browser pada perangkat ini. Hapus data browser dapat menghilangkan data, jadi ekspor cadangan secara berkala.</p><div class="actions"><button onclick="backup()">Unduh cadangan JSON</button><label style="margin:0"><input type="file" accept="application/json" id="restoreFile"></label><button class="secondary" onclick="restore()">Pulihkan JSON</button><button class="danger" onclick="clearData()">Hapus semua data</button></div><p class="small muted">Nama workspace: Affiliate Creator Studio • Versi 1.0 awal</p></div></section>  
+</main></div>  
+<nav class="mobilebar" id="mobileNav"><button class="active" data-page="dashboard">▦<br>Home</button><button data-page="office3d">🏢<br>Kantor 3D</button><button data-page="products">▣<br>Produk</button><button data-page="content">✎<br>Konten</button><button data-page="agents">✧<br>Agent</button><button data-page="reports">▤<br>Laporan</button></nav>  
+<script>  
+const KEY='acs_v1';  
+let state=load();  
+const agents=[  
+['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']  
+];  
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{products:[],contents:[],transactions:[]}}catch(e){return {products:[],contents:[],transactions:[]}}}  
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}  
+function money(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0)}  
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}  
+function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));document.getElementById('pageTitle').textContent=({dashboard:'Dashboard',office3d:'Kantor AI 3D',products:'Produk Affiliate',content:'Rencana Konten',transactions:'Transaksi',agents:'10 AI Agent',reports:'Laporan',settings:'Pengaturan'})[page];render()}  
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));  
+document.getElementById('productForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.products.push({id:Date.now(),name:f.get('name'),platform:f.get('platform'),price:+f.get('price')||0,link:f.get('link'),notes:f.get('notes')});e.target.reset();save();alert('Produk disimpan di perangkat ini.')});  
+document.getElementById('contentForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.contents.push({id:Date.now(),title:f.get('title'),platform:f.get('platform'),date:f.get('date'),status:f.get('status'),notes:f.get('notes')});e.target.reset();save();alert('Rencana konten disimpan.')});  
+document.getElementById('transactionForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);state.transactions.push({id:Date.now(),product:f.get('product'),date:f.get('date'),clicks:+f.get('clicks')||0,orders:+f.get('orders')||0,commission:+f.get('commission')||0,platform:f.get('platform')});e.target.reset();save();alert('Transaksi disimpan.')});  
+function del(type,id){if(confirm('Hapus item ini?')){state[type]=state[type].filter(x=>x.id!==id);save()}}  
+function render(){  
+const clicks=state.transactions.reduce((a,x)=>a+x.clicks,0),orders=state.transactions.reduce((a,x)=>a+x.orders,0),comm=state.transactions.reduce((a,x)=>a+x.commission,0);  
+mProducts.textContent=state.products.length;mContent.textContent=state.contents.length;mClicks.textContent=clicks.toLocaleString('id-ID');mCommission.textContent=money(comm);  
+productCount.textContent=state.products.length+' item';  
+productsBody.innerHTML=state.products.map(p=>`<tr><td><b>${esc(p.name)}</b><br><span class="muted">${esc(p.notes)}</span></td><td>${esc(p.platform)}</td><td>${money(p.price)}</td><td>${p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener">Buka</a>`:'-'}</td><td><button class="danger" onclick="del('products',${p.id})">×</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada produk.</td></tr>';  
+contentBody.innerHTML=state.contents.map(c=>`<tr><td>${esc(c.title)}</td><td>${esc(c.platform)}</td><td>${esc(c.date||'-')}</td><td>${esc(c.status)}</td><td><button class="danger" onclick="del('contents',${c.id})">×</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada rencana konten.</td></tr>';  
+transactionProduct.innerHTML=state.products.map(p=>`<option>${esc(p.name)}</option>`).join('')||'<option>Produk belum ditambahkan</option>';  
+transactionsBody.innerHTML=state.transactions.map(t=>`<tr><td>${esc(t.date||'-')}</td><td>${esc(t.product)}</td><td>${t.clicks}</td><td>${t.orders}</td><td>${money(t.commission)}</td><td><button class="danger" onclick="del('transactions',${t.id})">×</button></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada transaksi.</td></tr>';  
+rClicks.textContent=clicks.toLocaleString('id-ID');rOrders.textContent=orders.toLocaleString('id-ID');rCommission.textContent=money(comm);let rate=clicks?orders/clicks*100:0;rConversion.textContent=rate.toFixed(1)+'%';conversionBar.style.width=Math.min(rate,100)+'%';reportText.textContent=`Tercatat ${clicks} klik, ${orders} pesanan, dan ${money(comm)} komisi. Data ini berasal dari input manual, bukan sinkronisasi otomatis platform.`;  
+recent.innerHTML=state.transactions.length?state.transactions.slice(-4).reverse().map(t=>`<p class="small">${esc(t.date||'Tanpa tanggal')} • ${esc(t.product)} • ${money(t.commission)}</p>`).join(''):'Belum ada aktivitas. Tambahkan produk atau transaksi pertama.';  
+}  
+function agentTemplate(i,ctx){let p=ctx.trim()||'[Nama produk dan detail produk]';let templates=[  
+`PRIORITAS KERJA\nProduk: ${p}\n1. Lengkapi manfaat, harga, komisi, dan link.\n2. Validasi klaim produk dari sumber resmi.\n3. Buat 3 variasi konten.\n4. Catat klik, pesanan, dan komisi.\n5. Evaluasi setelah data terkumpul.`,  
+`RISET PRODUK\nProduk: ${p}\nPeriksa: masalah yang diselesaikan, manfaat utama, harga dibanding alternatif, ulasan pembeli, bukti klaim, potensi komisi.\nSkor 1-5 tiap aspek setelah data nyata tersedia. Jangan mengarang spesifikasi.`,  
+`TARGET AUDIENS\nProduk: ${p}\nTentukan: siapa yang paling membutuhkan, masalah harian, keberatan sebelum membeli, bahasa yang mereka gunakan, dan alasan percaya.\nUji 2 segmen audiens melalui konten berbeda.`,  
+`STRATEGI KONTEN\nProduk: ${p}\nPilar: edukasi penggunaan, demonstrasi, perbandingan jujur, FAQ, pengalaman setelah penggunaan.\nRencana uji: 3 angle, 2 format video, 1 CTA yang jelas.`,  
+`NASKAH VIDEO 30 DETIK\nProduk: ${p}\n0-3 dtk: “Masih bingung memilih [kategori produk]?”\n3-8 dtk: Sebut masalah yang relevan.\n8-20 dtk: Tunjukkan 2-3 manfaat yang sudah terverifikasi.\n20-26 dtk: Jelaskan siapa yang cocok.\n26-30 dtk: “Cek detail dan harga melalui link.”`,  
+`HOOK & CAPTION\nProduk: ${p}\nHook 1: “Sebelum membeli [kategori], perhatikan 3 hal ini.”\nHook 2: “Ini yang perlu kamu cek dari [kategori produk].”\nCaption: Kenali kebutuhanmu, cek detail produk, bandingkan pilihan, lalu putuskan sesuai kebutuhan.\nCTA: Lihat detail produk di link.`,  
+`VIDEO PLAN\nProduk: ${p}\nShot 1: close-up produk dan nama.\nShot 2: masalah/kebutuhan pengguna.\nShot 3: demo fitur yang benar-benar ada.\nShot 4: detail ukuran/varian/isi paket.\nShot 5: ringkasan dan CTA.\nTambahkan teks layar dan subtitle.`,  
+`SEO & HASHTAG\nProduk: ${p}\nKata kunci: nama kategori, fungsi utama, kebutuhan pengguna, cara penggunaan.\nHashtag awal: #affiliateindonesia #rekomendasiproduk #reviewproduk #tipsbelanja\nSesuaikan dengan platform dan kata yang benar-benar dicari audiens.`,  
+`CHECKLIST PUBLIKASI\nProduk: ${p}\n□ Video vertikal dan audio jelas\n□ Klaim dan harga sudah dicek\n□ Caption dan CTA tersedia\n□ Link affiliate sudah diuji\n□ Disclosure affiliate ditambahkan sesuai aturan platform\n□ Jadwal dan URL posting dicatat`,  
+`ANALISIS PERFORMA\nProduk: ${p}\nCatat per konten: tayangan, klik, pesanan, komisi, tanggal, platform.\nCTR = klik ÷ tayangan × 100% (jika tayangan tersedia).\nKonversi = pesanan ÷ klik × 100%.\nBandingkan konten pada periode yang setara; jangan simpulkan dari data terlalu sedikit.`  
+];return templates[i]}  
+function buildAgents(){agentGrid.innerHTML=agents.map((a,i)=>`<div class="agent"><strong>${i+1}. ${a[0]}</strong><small>${a[1]}</small><label style="margin-top:9px">Konteks produk / tugas<textarea id="ctx${i}" placeholder="Masukkan nama produk, manfaat terverifikasi, target pembeli..."></textarea></label><button onclick="runAgent(${i})">Jalankan agent</button></div>`).join('')}  async function callAgentAPI(i, ctx) {
+const role = agents[i][0];
+const task = agents[i][1];
+const prompt = Kamu adalah ${role} dalam Affiliate Creator Studio. Tugasmu: ${task}.   Berikan hasil kerja yang praktis, terstruktur, dalam Bahasa Indonesia. Jangan mengarang data produk, harga, komisi, ulasan, atau klaim yang tidak diberikan. Tandai informasi yang perlu diverifikasi.   Konteks dan instruksi pengguna:   ${ctx};
+const response = await fetch('https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai', {
+method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({prompt})
+});
+const data = await response.json();
+if (!response.ok || !data.success) throw new Error(data.error || 'AI gagal memproses tugas');
+return data.result;
 }
 async function runAgent(i) {
-  const ctx = document.getElementById('ctx' + i).value.trim();
-  if (!ctx) { alert('Masukkan konteks produk atau tugas dahulu'); return; }
-  agentOutput.textContent = agents[i][0] + ' sedang bekerja...';
-  try {
-    const result = await callAgentAPI(i, ctx);
-    agentOutput.textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
-  } catch (error) {
-    agentOutput.textContent = 'Terjadi kesalahan: ' + error.message + '\nPeriksa koneksi internet dan konfigurasi backend Cloudflare.';
-  }
+const ctx = document.getElementById('ctx' + i).value.trim();
+if (!ctx) { alert('Masukkan konteks produk atau tugas dahulu'); return; }
+agentOutput.textContent = agents[i][0] + ' sedang bekerja...';
+try {
+const result = await callAgentAPI(i, ctx);
+agentOutput.textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
+} catch (error) {
+agentOutput.textContent = 'Terjadi kesalahan: ' + error.message + '\nPeriksa koneksi internet dan konfigurasi backend Cloudflare.';
+}
 }
 const officePeople = ['🧑🏻‍💻','👩🏻‍💼','🧑🏽‍💼','👩🏼‍💻','🧑🏻‍🔬','👨🏻‍💼','👩🏽‍💻','👨🏼‍🎨','👩🏻‍📊','🧑🏽‍💻'];
 function buildOffice() {
- const list=document.getElementById('officeAgentList');
- list.innerHTML=agents.map((a,i)=>`<button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>`).join('');
+const list=document.getElementById('officeAgentList');
+list.innerHTML=agents.map((a,i)=><button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})"><span>${officePeople[i]}</span>${i+1}. ${a[0]}</button>).join('');
 }
 function selectOfficeAgent(i) {
-  go('agents');
-  const idx = Math.max(0, Math.min(9, i-1));
-  const field = document.getElementById('ctx'+idx);
-  if (field) {
-    field.value = document.getElementById('allAgentContext')?.value || '';
-    field.focus();
-    agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konteks tugas lalu tekan Jalankan agent.';
-  }
+go('agents');
+const idx = Math.max(0, Math.min(9, i-1));
+const field = document.getElementById('ctx'+idx);
+if (field) {
+field.value = document.getElementById('allAgentContext')?.value || '';
+field.focus();
+agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konteks tugas lalu tekan Jalankan agent.';
+}
 }
 async function runAllAgents() {
-  const ctx = document.getElementById('allAgentContext').value.trim();
-  if (!ctx) { alert('Tuliskan instruksi untuk kantor terlebih dahulu.'); return; }
-  const out = document.getElementById('allAgentOutput');
-  out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
-  const results = [];
-  for (let i=0;i<agents.length;i++) {
-    out.textContent = `Victoria: ${i+1}/10 – ${agents[i][0]} sedang bekerja...`;
-    try {
-      const result = await callAgentAPI(i, ctx);
-      results.push(`=== ${i+1}. ${agents[i][0]} ===\n${typeof result==='string'?result:JSON.stringify(result,null,2)}`);
-    } catch (e) {
-      results.push(`=== ${i+1}. ${agents[i][0]} ===\nGagal: ${e.message}`);
-    }
-    out.textContent = results.join('\n\n');
-  }
-  out.textContent = 'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
-  agentOutput.textContent = out.textContent;
+const ctx = document.getElementById('allAgentContext').value.trim();
+if (!ctx) { alert('Tuliskan instruksi untuk kantor terlebih dahulu.'); return; }
+const out = document.getElementById('allAgentOutput');
+out.textContent = 'Victoria sedang membagikan tugas kepada 10 agen...';
+const results = [];
+for (let i=0;i<agents.length;i++) {
+out.textContent = Victoria: ${i+1}/10 – ${agents[i][0]} sedang bekerja...;
+try {
+const result = await callAgentAPI(i, ctx);
+results.push(=== ${i+1}. ${agents[i][0]} ===\n${typeof result==='string'?result:JSON.stringify(result,null,2)});
+} catch (e) {
+results.push(=== ${i+1}. ${agents[i][0]} ===\nGagal: ${e.message});
+}
+out.textContent = results.join('\n\n');
+}
+out.textContent = 'LAPORAN KANTOR AI 10 AGEN\n\n' + results.join('\n\n');
+agentOutput.textContent = out.textContent;
 }
 function copyOutput(){navigator.clipboard?.writeText(agentOutput.textContent).then(()=>alert('Output disalin.')).catch(()=>alert('Salin manual teks output.'))}
 function downloadOutput(){let b=new Blob([agentOutput.textContent],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='output-agent.txt';a.click();URL.revokeObjectURL(a.href)}
@@ -230,58 +218,58 @@ function clearData(){if(confirm('Yakin hapus seluruh produk, konten, dan transak
 function exportCSV(){let rows=[['tanggal','produk','platform','klik','pesanan','komisi'],...state.transactions.map(t=>[t.date,t.product,t.platform,t.clicks,t.orders,t.commission])];let csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='laporan-affiliate.csv';a.click();URL.revokeObjectURL(a.href)}
 buildAgents();buildOffice();render();
 </script>
-<script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
-const canvas=document.getElementById('officeCanvas');
-const world=document.getElementById('officeWorld');
-if(canvas && world){
- const scene=new THREE.Scene(); scene.background=new THREE.Color(0xb9c7d4);
- const camera=new THREE.PerspectiveCamera(34,1,.1,100); camera.position.set(15,17,19);
- const renderer=new THREE.WebGLRenderer({canvas,antialias:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.outputColorSpace=THREE.SRGBColorSpace;
- const controls=new OrbitControls(camera,renderer.domElement); controls.target.set(0,0,0); controls.enableDamping=true; controls.maxPolarAngle=Math.PI*.47; controls.minDistance=10; controls.maxDistance=29;
- scene.add(new THREE.HemisphereLight(0xffffff,0x657080,2.1)); const sun=new THREE.DirectionalLight(0xffffff,2.3); sun.position.set(-8,15,10); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); scene.add(sun);
- const mat=(color,rough=.82)=>new THREE.MeshStandardMaterial({color,roughness:rough});
- const floor=new THREE.Mesh(new THREE.BoxGeometry(20,.35,15),mat(0xe7dfce)); floor.position.y=-.2; floor.receiveShadow=true; scene.add(floor);
- const wallMat=mat(0xd3d9df); const wallBack=new THREE.Mesh(new THREE.BoxGeometry(20,4,.25),wallMat); wallBack.position.set(0,1.8,-7.5); wallBack.castShadow=true; scene.add(wallBack);
- const wallLeft=new THREE.Mesh(new THREE.BoxGeometry(.25,4,15),wallMat); wallLeft.position.set(-10,1.8,0); wallLeft.castShadow=true; scene.add(wallLeft);
- // windows and office accents
- for(let i=0;i<4;i++){let win=new THREE.Mesh(new THREE.BoxGeometry(2.7,1.35,.08),mat(0x8fc4d8,.25));win.position.set(-7.5+i*4.7,2.1,-7.32);scene.add(win);}
- const wood=mat(0x9b6847), dark=mat(0x354354), screenMat=mat(0x263e58,.3), chairMat=mat(0x56677a);
- function box(parent,w,h,d,material,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
- function makeDesk(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);box(g,2,.16,1.1,wood,0,1.05,0);for(const dx of [-.82,.82])for(const dz of [-.4,.4])box(g,.12,1,.12,dark,dx,.5,dz);box(g,.78,.52,.08,dark,0,1.42,-.22);box(g,.68,.4,.025,screenMat,0,1.44,-.17);box(g,.16,.08,.15,dark,0,1.12,-.12);const chair=new THREE.Group();chair.position.set(0,0,.95);g.add(chair);box(chair,.65,.14,.62,chairMat,0,.58,0);box(chair,.62,.75,.14,chairMat,0,.98,.25);box(chair,.12,.55,.12,dark,0,.25,0);return g;}
- // central meeting area
- const meeting=new THREE.Mesh(new THREE.CylinderGeometry(2.0,2.0,.22,12),wood);meeting.position.set(0,.55,-.3);meeting.castShadow=true;scene.add(meeting);
- const meetingLeg=new THREE.Mesh(new THREE.CylinderGeometry(.24,.32,.55,8),dark);meetingLeg.position.set(0,.2,-.3);scene.add(meetingLeg);
- for(let i=0;i<6;i++){const a=i*Math.PI/3;const c=new THREE.Mesh(new THREE.BoxGeometry(.72,.14,.72),chairMat);c.position.set(Math.cos(a)*2.25,.45,-.3+Math.sin(a)*2.25);c.rotation.y=-a;c.castShadow=true;scene.add(c);}
- // reception and lounge
- box(scene,2.7,.9,.8,mat(0x667d91),-7,.45,5.4);box(scene,2.2,.22,1.4,mat(0x8c9ba6),6,.25,5.2);
- const agentsData=[['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']];
- const positions=[[-7,-4],[-3.7,-4],[3.7,-4],[7,-4],[-7,2.8],[-3.7,3.3],[3.7,3.3],[7,2.8],[-7,5.7],[7,5.7]];
- const avatarColors=[0x4b82b8,0xd18b9a,0x6e9b83,0xb48a60,0x8d83ba,0x4f9aaf,0xb18a73,0x7290a8,0xc18caa,0x8b9b67];
- const agentGroups=[]; const clickable=[];
- function labelSprite(text){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='rgba(25,39,56,.88)';ctx.beginPath();ctx.roundRect(8,8,496,112,18);ctx.fill();ctx.strokeStyle='#a9c6dc';ctx.lineWidth=5;ctx.stroke();ctx.fillStyle='#fff';ctx.font='bold 42px system-ui';ctx.textAlign='center';ctx.fillText(text,256,78);const tex=new THREE.CanvasTexture(c);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true}));s.scale.set(2.3,.58,1);s.position.y=2.8;return s;}
- function makeAgent(i){const g=new THREE.Group();const [x,z]=positions[i];g.position.set(x,0,z);scene.add(g);
-  const body=new THREE.Mesh(new THREE.CapsuleGeometry(.28,.62,4,8),mat(avatarColors[i]));body.position.y=1.05;body.castShadow=true;g.add(body);
-  const head=new THREE.Mesh(new THREE.SphereGeometry(.27,12,10),mat(0xe7b995));head.position.y=1.68;head.castShadow=true;g.add(head);
-  const hair=new THREE.Mesh(new THREE.SphereGeometry(.275,10,7,0,Math.PI*2,0,Math.PI*.55),mat(0x46362e));hair.position.y=1.78;g.add(hair);
-  for(const side of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.09,.42,3,6),mat(avatarColors[i]));arm.position.set(side*.34,1.15,.02);arm.rotation.z=side*.25;g.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.1,.42,3,6),dark);leg.position.set(side*.13,.38,0);g.add(leg);}
-  const desk=makeDesk(x,z+.5);g.add(labelSprite(['Victoria',...agentsData.slice(1).map(a=>a[0].replace(' Agent',''))][i]));g.userData={index:i,name:agentsData[i][0],status:'Bekerja di meja'};agentGroups.push(g);clickable.push(body,head);return g;}
- agentsData.forEach((_,i)=>makeAgent(i));
- // wall logo sign
- const sign=box(scene,6,.08,.35,mat(0x314d68),0,3.6,-7.2);sign.rotation.z=0;
- let selected=0,mode='work',meetingTargets=[];
- const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
- function select(i){selected=i;const d=agentsData[i];document.getElementById('officeSelectedName').textContent=(i===0?'Victoria • ':'')+d[0];document.getElementById('officeSelectedStatus').textContent=agentGroups[i].userData.status;document.querySelectorAll('.office-agent-chip').forEach((b,j)=>b.classList.toggle('selected',j===i));}
- function onPick(e){const r=canvas.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(clickable,false);if(hits.length){const idx=clickable.indexOf(hits[0].object);select(Math.floor(idx/2));}}
- canvas.addEventListener('pointerdown',onPick);
- window.selectOfficeAgent=(n)=>{select(Math.max(0,Math.min(9,n-1)));};
- window.officeSetMode=(m)=>{mode=m;meetingTargets=[];agentGroups.forEach((g,i)=>{if(m==='meeting'){const a=i/10*Math.PI*2;meetingTargets[i]=new THREE.Vector3(Math.cos(a)*3.0,0,-.3+Math.sin(a)*3.0);g.userData.status='Bergerak ke ruang rapat';}else{meetingTargets[i]=new THREE.Vector3(positions[i][0],0,positions[i][1]);g.userData.status='Bekerja di meja';}});select(selected);document.getElementById('officeClock').textContent=m==='meeting'?'● TEAM MEETING':'● WORK MODE';};
- window.officeResetView=()=>{camera.position.set(15,17,19);controls.target.set(0,0,0);controls.update();};
- window.officeSendSelectedToAgents=()=>{document.getElementById('ctx'+selected).value=document.getElementById('allAgentContext').value;go('agents');};
- function resize(){const w=world.clientWidth,h=world.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(world);resize();
- const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();agentGroups.forEach((g,i)=>{g.position.y=.025*Math.sin(t*2+i);if(meetingTargets[i]){const v=meetingTargets[i].clone().sub(g.position);if(v.length()>.12){g.position.add(v.normalize()*.025);g.rotation.y=Math.atan2(v.x,v.z);}}else{g.rotation.y=.06*Math.sin(t+i);}});controls.update();renderer.render(scene,camera);}animate();select(0);
-}
-</script>
 
-</body></html>
+<script type="module">  
+import * as THREE from 'https://esm.sh/three@0.161.0';  
+import { OrbitControls } from 'https://esm.sh/three@0.161.0/examples/jsm/controls/OrbitControls.js';  
+const canvas=document.getElementById('officeCanvas');  
+const world=document.getElementById('officeWorld');  
+if(canvas && world){  
+ const scene=new THREE.Scene(); scene.background=new THREE.Color(0xb9c7d4);  
+ const camera=new THREE.PerspectiveCamera(34,1,.1,100); camera.position.set(15,17,19);  
+ let renderer; try { renderer=new THREE.WebGLRenderer({canvas,antialias:true}); } catch(err) { world.innerHTML='<div style="height:100%;display:grid;place-items:center;padding:24px;text-align:center;color:#17283c;font-weight:700">Mesin 3D tidak dapat dijalankan di browser ini. Coba Chrome terbaru dan aktifkan akselerasi grafis.</div>'; throw err; } renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap; renderer.outputColorSpace=THREE.SRGBColorSpace;  
+ const controls=new OrbitControls(camera,renderer.domElement); controls.target.set(0,0,0); controls.enableDamping=true; controls.maxPolarAngle=Math.PI*.47; controls.minDistance=10; controls.maxDistance=29;  
+ scene.add(new THREE.HemisphereLight(0xffffff,0x657080,2.1)); const sun=new THREE.DirectionalLight(0xffffff,2.3); sun.position.set(-8,15,10); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); scene.add(sun);  
+ const mat=(color,rough=.82)=>new THREE.MeshStandardMaterial({color,roughness:rough});  
+ const floor=new THREE.Mesh(new THREE.BoxGeometry(20,.35,15),mat(0xe7dfce)); floor.position.y=-.2; floor.receiveShadow=true; scene.add(floor);  
+ const wallMat=mat(0xd3d9df); const wallBack=new THREE.Mesh(new THREE.BoxGeometry(20,4,.25),wallMat); wallBack.position.set(0,1.8,-7.5); wallBack.castShadow=true; scene.add(wallBack);  
+ const wallLeft=new THREE.Mesh(new THREE.BoxGeometry(.25,4,15),wallMat); wallLeft.position.set(-10,1.8,0); wallLeft.castShadow=true; scene.add(wallLeft);  
+ // windows and office accents  
+ for(let i=0;i<4;i++){let win=new THREE.Mesh(new THREE.BoxGeometry(2.7,1.35,.08),mat(0x8fc4d8,.25));win.position.set(-7.5+i*4.7,2.1,-7.32);scene.add(win);}  
+ const wood=mat(0x9b6847), dark=mat(0x354354), screenMat=mat(0x263e58,.3), chairMat=mat(0x56677a);  
+ function box(parent,w,h,d,material,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}  
+ function makeDesk(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);box(g,2,.16,1.1,wood,0,1.05,0);for(const dx of [-.82,.82])for(const dz of [-.4,.4])box(g,.12,1,.12,dark,dx,.5,dz);box(g,.78,.52,.08,dark,0,1.42,-.22);box(g,.68,.4,.025,screenMat,0,1.44,-.17);box(g,.16,.08,.15,dark,0,1.12,-.12);const chair=new THREE.Group();chair.position.set(0,0,.95);g.add(chair);box(chair,.65,.14,.62,chairMat,0,.58,0);box(chair,.62,.75,.14,chairMat,0,.98,.25);box(chair,.12,.55,.12,dark,0,.25,0);return g;}  
+ // central meeting area  
+ const meeting=new THREE.Mesh(new THREE.CylinderGeometry(2.0,2.0,.22,12),wood);meeting.position.set(0,.55,-.3);meeting.castShadow=true;scene.add(meeting);  
+ const meetingLeg=new THREE.Mesh(new THREE.CylinderGeometry(.24,.32,.55,8),dark);meetingLeg.position.set(0,.2,-.3);scene.add(meetingLeg);  
+ for(let i=0;i<6;i++){const a=i*Math.PI/3;const c=new THREE.Mesh(new THREE.BoxGeometry(.72,.14,.72),chairMat);c.position.set(Math.cos(a)*2.25,.45,-.3+Math.sin(a)*2.25);c.rotation.y=-a;c.castShadow=true;scene.add(c);}  
+ // reception and lounge  
+ box(scene,2.7,.9,.8,mat(0x667d91),-7,.45,5.4);box(scene,2.2,.22,1.4,mat(0x8c9ba6),6,.25,5.2);  
+ const agentsData=[['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']];  
+ const positions=[[-7,-4],[-3.7,-4],[3.7,-4],[7,-4],[-7,2.8],[-3.7,3.3],[3.7,3.3],[7,2.8],[-7,5.7],[7,5.7]];  
+ const avatarColors=[0x4b82b8,0xd18b9a,0x6e9b83,0xb48a60,0x8d83ba,0x4f9aaf,0xb18a73,0x7290a8,0xc18caa,0x8b9b67];  
+ const agentGroups=[]; const clickable=[];  
+ function labelSprite(text){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='rgba(25,39,56,.88)';ctx.beginPath();ctx.roundRect(8,8,496,112,18);ctx.fill();ctx.strokeStyle='#a9c6dc';ctx.lineWidth=5;ctx.stroke();ctx.fillStyle='#fff';ctx.font='bold 42px system-ui';ctx.textAlign='center';ctx.fillText(text,256,78);const tex=new THREE.CanvasTexture(c);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true}));s.scale.set(2.3,.58,1);s.position.y=2.8;return s;}  
+ function makeAgent(i){const g=new THREE.Group();const [x,z]=positions[i];g.position.set(x,0,z);scene.add(g);  
+  const body=new THREE.Mesh(new THREE.CapsuleGeometry(.28,.62,4,8),mat(avatarColors[i]));body.position.y=1.05;body.castShadow=true;g.add(body);  
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.27,12,10),mat(0xe7b995));head.position.y=1.68;head.castShadow=true;g.add(head);  
+  const hair=new THREE.Mesh(new THREE.SphereGeometry(.275,10,7,0,Math.PI*2,0,Math.PI*.55),mat(0x46362e));hair.position.y=1.78;g.add(hair);  
+  for(const side of [-1,1]){const arm=new THREE.Mesh(new THREE.CapsuleGeometry(.09,.42,3,6),mat(avatarColors[i]));arm.position.set(side*.34,1.15,.02);arm.rotation.z=side*.25;g.add(arm);const leg=new THREE.Mesh(new THREE.CapsuleGeometry(.1,.42,3,6),dark);leg.position.set(side*.13,.38,0);g.add(leg);}  
+  const desk=makeDesk(x,z+.5);g.add(labelSprite(['Victoria',...agentsData.slice(1).map(a=>a[0].replace(' Agent',''))][i]));g.userData={index:i,name:agentsData[i][0],status:'Bekerja di meja'};agentGroups.push(g);clickable.push(body,head);return g;}  
+ agentsData.forEach((_,i)=>makeAgent(i));  
+ // wall logo sign  
+ const sign=box(scene,6,.08,.35,mat(0x314d68),0,3.6,-7.2);sign.rotation.z=0;  
+ let selected=0,mode='work',meetingTargets=[];  
+ const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();  
+ function select(i){selected=i;const d=agentsData[i];document.getElementById('officeSelectedName').textContent=(i===0?'Victoria • ':'')+d[0];document.getElementById('officeSelectedStatus').textContent=agentGroups[i].userData.status;document.querySelectorAll('.office-agent-chip').forEach((b,j)=>b.classList.toggle('selected',j===i));}  
+ function onPick(e){const r=canvas.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(clickable,false);if(hits.length){const idx=clickable.indexOf(hits[0].object);select(Math.floor(idx/2));}}  
+ canvas.addEventListener('pointerdown',onPick);  
+ window.selectOfficeAgent=(n)=>{select(Math.max(0,Math.min(9,n-1)));};  
+ window.officeSetMode=(m)=>{mode=m;meetingTargets=[];agentGroups.forEach((g,i)=>{if(m==='meeting'){const a=i/10*Math.PI*2;meetingTargets[i]=new THREE.Vector3(Math.cos(a)*3.0,0,-.3+Math.sin(a)*3.0);g.userData.status='Bergerak ke ruang rapat';}else{meetingTargets[i]=new THREE.Vector3(positions[i][0],0,positions[i][1]);g.userData.status='Bekerja di meja';}});select(selected);document.getElementById('officeClock').textContent=m==='meeting'?'● TEAM MEETING':'● WORK MODE';};  
+ window.officeResetView=()=>{camera.position.set(15,17,19);controls.target.set(0,0,0);controls.update();};  
+ window.officeSendSelectedToAgents=()=>{document.getElementById('ctx'+selected).value=document.getElementById('allAgentContext').value;go('agents');};  
+ function resize(){const w=world.clientWidth,h=world.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(world);resize();  
+ document.getElementById('officeClock').textContent='● SIMULASI 3D AKTIF';  
+ const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();agentGroups.forEach((g,i)=>{g.position.y=.025*Math.sin(t*2+i);if(meetingTargets[i]){const v=meetingTargets[i].clone().sub(g.position);if(v.length()>.12){g.position.add(v.normalize()*.025);g.rotation.y=Math.atan2(v.x,v.z);}}else{g.rotation.y=.06*Math.sin(t+i);}});controls.update();renderer.render(scene,camera);}animate();select(0);  
+}  
+</script>  </body></html>  
