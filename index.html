@@ -323,10 +323,10 @@ ${r.report.slice(0, 900)}
 
     const agentContext = `
 INSTRUKSI ASLI CEO:
-${ctx}
+${ctx.slice(0, 900)}
 
 HASIL PEKERJAAN AGEN SEBELUMNYA:
-${previousReports || 'Belum ada laporan agen sebelumnya.'}
+${previousReports.slice(0, 1200) || 'Belum ada laporan agen sebelumnya.'}
 
 INSTRUKSI TAMBAHAN:
 1. Kerjakan tugas spesialisasi kamu sekarang.
