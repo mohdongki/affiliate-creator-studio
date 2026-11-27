@@ -118,9 +118,33 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 <script>  
 const KEY='acs_v1';  
 let state=load();  
-const agents=[  
-['Manager Agent','Mengatur prioritas dan alur kerja'],['Product Research Agent','Menganalisis produk dan nilai jual'],['Audience Research Agent','Merumuskan target pembeli'],['Content Strategist Agent','Membuat pilar dan strategi konten'],['Script Writer Agent','Menulis naskah video pendek'],['Hook & Copywriter Agent','Membuat hook, caption, dan CTA'],['Video Planner Agent','Menyusun urutan visual video'],['SEO & Hashtag Agent','Menyarankan kata kunci dan hashtag'],['Publishing Agent','Menyusun checklist publikasi'],['Analytics Agent','Mengevaluasi metrik performa']  
-];  
+
+const agents = [
+  ['Manager Agent', 'Mengatur prioritas dan alur kerja'],
+  ['Product Research Agent', 'Menganalisis produk dan nilai jual'],
+  ['Audience Research Agent', 'Merumuskan target pembeli'],
+  ['Content Strategist Agent', 'Membuat pilar dan strategi konten'],
+  ['Script Writer Agent', 'Menulis naskah video pendek'],
+  ['Hook & Copywriter Agent', 'Membuat hook, caption, dan CTA'],
+  ['Video Planner Agent', 'Menyusun urutan visual video'],
+  ['SEO & Hashtag Agent', 'Menyarankan kata kunci dan hashtag'],
+  ['Publishing Agent', 'Menyusun checklist publikasi'],
+  ['Analytics Agent', 'Mengevaluasi metrik performa']
+];
+
+const agentKeys = [
+  'victoria',
+  'product',
+  'audience',
+  'strategy',
+  'script',
+  'hooks',
+  'video',
+  'seo',
+  'publishing',
+  'analytics'
+];
+
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{products:[],contents:[],transactions:[]}}catch(e){return {products:[],contents:[],transactions:[]}}}  
 function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}  
 function money(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0)}  
@@ -219,7 +243,10 @@ Jawab dalam Bahasa Indonesia yang profesional.
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({
+  prompt,
+  agent: agentKeys[i]
+})
     }
   );
 
