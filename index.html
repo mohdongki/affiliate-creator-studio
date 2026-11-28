@@ -376,12 +376,14 @@ INSTRUKSI:
   out.textContent =
     'Victoria sedang membaca dan menggabungkan sembilan laporan...';
 
-  const summary = reports.map((r, i) => `
+  
+const summary = reports.map((r, i) => `
 AGEN ${i + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
-RINGKASAN HASIL:
-${String(r.report).replace(/\s+/g, ' ').slice(0, 260)}
+HASIL KERJA:
+${String(r.report).slice(0, 1200)}
 `).join('\n');
+
 
   const managerContext = `
 INSTRUKSI CEO:
