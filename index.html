@@ -390,7 +390,7 @@ Gunakan Bahasa Indonesia.
     const summary = reports.map((r, i) => `
 AGEN ${i + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
-HASIL KERJA: ${makeBrief(r.report, 220)}
+HASIL KERJA: ${makeBrief(r.report, 900)}
 `).join('\n');
 
     const managerContext = `
@@ -429,7 +429,7 @@ FORMAT:
 Jika ringkasan kurang lengkap, nyatakan keterbatasannya secara jujur.
 Jangan mengarang isi laporan yang tidak tersedia.
 Gunakan Bahasa Indonesia profesional.
-`.trim().slice(0, 3800);
+`.trim().slice(0, 12000);
 
     let victoriaReport = '';
 
