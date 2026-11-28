@@ -496,7 +496,85 @@ function backup(){let b=new Blob([JSON.stringify(state,null,2)],{type:'applicati
 function restore(){let f=restoreFile.files[0];if(!f)return alert('Pilih file JSON dahulu.');let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.products)||!Array.isArray(d.contents)||!Array.isArray(d.transactions))throw 0;state=d;save();alert('Cadangan dipulihkan.')}catch(e){alert('File cadangan tidak valid.')}};r.readAsText(f)}
 function clearData(){if(confirm('Yakin hapus seluruh produk, konten, dan transaksi di browser ini?')){state={products:[],contents:[],transactions:[]};save()}}
 function exportCSV(){let rows=[['tanggal','produk','platform','klik','pesanan','komisi'],...state.transactions.map(t=>[t.date,t.product,t.platform,t.clicks,t.orders,t.commission])];let csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='laporan-affiliate.csv';a.click();URL.revokeObjectURL(a.href)}
-buildAgents();buildOffice();render();
+function buildOffice() {
+  const list = document.getElementById('officeAgentList');
+  if (!list) return;
+
+  list.innerHTML = agents.map((agent, i) =>
+    `<button class="office-agent-chip" onclick="selectOfficeAgent(${i+1})"><span>${i===0?'👩‍💼':'🤖'}</span>${agent[0]}</button>`
+  ).join('');
+}
+
+async function runAgent(i) {
+  const context = document.getElementById('ctx' + i);
+  const output = document.getElementById('agentOutput');
+
+  if (!context || !output) return;
+
+  const prompt = context.value.trim();
+
+  if (!prompt) {
+    alert('Masukkan konteks atau tugas terlebih dahulu.');
+    return;
+  }
+
+  output.textContent = 'Victoria: Menjalankan ' + agents[i][0] + '...';
+
+  try {
+    const result = await callAgentAPI(i, prompt);
+
+    if (result.success === false) {
+      throw new Error(result.error || 'Agen gagal bekerja.');
+    }
+
+    output.textContent =
+      'HASIL: ' + agents[i][0] + '\n\n' +
+      extractAgentText(result);
+
+  } catch (error) {
+    output.textContent =
+      'AGEN GAGAL: ' + agents[i][0] + '\n' +
+      error.message;
+  }
+}
+
+function extractAgentText(data) {
+  let value = data;
+
+  for (let i = 0; i < 5; i++) {
+    if (typeof value === 'string') {
+      try {
+        value = JSON.parse(value);
+        continue;
+      } catch {
+        return value;
+      }
+    }
+
+    if (value && typeof value === 'object') {
+      if (value.result !== undefined) {
+        value = value.result;
+        continue;
+      }
+
+      if (value.response !== undefined) {
+        value = value.response;
+        continue;
+      }
+
+      if (value.content !== undefined) {
+        return String(value.content);
+      }
+
+      return JSON.stringify(value, null, 2);
+    }
+
+    break;
+  }
+
+  return String(value ?? '');
+}
+ buildAgents();buildOffice();render();
 </script>
 
 <script type="module">  
