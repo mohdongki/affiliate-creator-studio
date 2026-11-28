@@ -378,7 +378,12 @@ const summary = reports.map((r, i) => `
 AGEN ${i + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
 LAPORAN:
-${r.report.slice(0, 150)}
+${(() => {
+  const report = String(r.report || '');
+  const marker = report.indexOf('HASIL PEKERJAAN');
+  const start = marker >= 0 ? marker : 0;
+  return report.slice(start, start + 300);
+})()}
 `).join('\n');
 
 
@@ -415,7 +420,7 @@ Buat laporan akhir yang jelas, lengkap, dan profesional dalam Bahasa Indonesia.
   let victoriaReport = '';
 
   try {
-    const result = await callAgentAPI(0, managerContext.slice(0, 2500));
+    const result = await callAgentAPI(0, managerContext.slice(0, 3900));
 
     victoriaReport = typeof result === 'string'
       ? result
