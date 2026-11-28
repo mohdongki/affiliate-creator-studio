@@ -378,13 +378,13 @@ const summary = reports.map((r, i) => `
 AGEN ${i + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
 LAPORAN:
-${r.report.slice(0, 300)}
+${r.report.slice(0, 150)}
 `).join('\n');
 
 
   const managerContext = `
 INSTRUKSI ASLI CEO:
-${ctx}
+${ctx.slice(0, 300)}
 
 LAPORAN SEMBILAN AGEN SPESIALIS:
 ${summary}
@@ -415,7 +415,7 @@ Buat laporan akhir yang jelas, lengkap, dan profesional dalam Bahasa Indonesia.
   let victoriaReport = '';
 
   try {
-    const result = await callAgentAPI(0, managerContext.slice(0, 3500));
+    const result = await callAgentAPI(0, managerContext.slice(0, 2500));
 
     victoriaReport = typeof result === 'string'
       ? result
