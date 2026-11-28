@@ -194,106 +194,6 @@ function buildAgents() {
 }
 
 
-async function callAgentAPI(i, ctx) {
-  const role = agents[i][0];
-  const task = agents[i][1];
-
-  const prompt = `
-KAMU ADALAH ${role} DI AFFILIATE CREATOR STUDIO.
-
-IDENTITAS:
-Kamu adalah agen spesialis dengan tanggung jawab khusus.
-Kamu bekerja di bawah koordinasi Victoria sebagai Manager Agent.
-
-TUGAS UTAMA:
-${task}
-
-KONTEKS BISNIS:
-Niche utama: CAMPURAN.
-Platform: TikTok, YouTube Shorts, Instagram, Facebook.
-Perangkat kerja: HP Android.
-Target: Membangun bisnis affiliate dan konten kreator.
-
-INSTRUKSI KERJA:
-1. Kerjakan tugas sesuai spesialisasimu.
-2. Jangan mengambil alih tugas agen lain.
-3. Gunakan hasil kerja yang praktis dan terstruktur.
-4. Jangan mengarang harga, komisi, data penjualan, atau spesifikasi produk.
-5. Tandai informasi yang belum diverifikasi.
-6. Berikan rekomendasi yang bisa langsung diterapkan.
-
-KONTEKS DAN INSTRUKSI CEO:
-${ctx}
-
-FORMAT HASIL:
-- Identitas agen
-- Analisis tugas
-- Hasil pekerjaan
-- Rekomendasi
-- Hal yang perlu diverifikasi
-- Langkah berikutnya
-
-Jawab dalam Bahasa Indonesia yang profesional.
-`;
-
-  const response = await fetch(
-    'https://affiliate-ai-backend.mohd-ongki27.workers.dev/api/ai',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-  prompt,
-  agent: agentKeys[i]
-})
-    }
-  );
-
-  const data = await response.json();
-
-  if (!response.ok || !data.success) {
-    throw new Error(data.error || 'AI gagal memproses tugas');
-  }
-
-  return data.result;
-}
-
-async function runAgent(i) {
-const ctx = document.getElementById('ctx' + i).value.trim();
-if (!ctx) { alert('Masukkan konteks produk atau tugas dahulu'); return; }
-agentOutput.textContent = agents[i][0] + ' sedang bekerja...';
-try {
-const result = await callAgentAPI(i, ctx);
-agentOutput.textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
-} catch (error) {
-agentOutput.textContent = 'Terjadi kesalahan: ' + error.message + '\nPeriksa koneksi internet dan konfigurasi backend Cloudflare.';
-}
-}
-const officePeople = ['🧑🏻‍💻','👩🏻‍💼','🧑🏽‍💼','👩🏼‍💻','🧑🏻‍🔬','👨🏻‍💼','👩🏽‍💻','👨🏼‍🎨','👩🏻‍📊','🧑🏽‍💻'];
-function buildOffice() {
-  const list = document.getElementById('officeAgentList');
-
-  list.innerHTML = agents.map((a, i) =>
-    `<button class="office-agent-chip" id="officeChip${i}" onclick="selectOfficeAgent(${i+1})">
-      <span>${officePeople[i]}</span>
-      ${i+1}. ${a[0]}
-    </button>`
-  ).join('');
-}
-function selectOfficeAgent(i) {
-go('agents');
-const idx = Math.max(0, Math.min(9, i-1));
-const field = document.getElementById('ctx'+idx);
-if (field) {
-field.value = document.getElementById('allAgentContext')?.value || '';
-field.focus();
-agentOutput.textContent = 'Agen terpilih: ' + agents[idx][0] + '. Masukkan konteks tugas lalu tekan Jalankan agent.';
-}
-}
-
-
-
 
 async function runAllAgents() {
   const ctx = document.getElementById('allAgentContext').value.trim();
@@ -336,56 +236,92 @@ async function runAllAgents() {
     );
   }
 
-  function shortReport(report, limit = 150) {
-    return String(report || 'Tidak ada hasil')
+  // Mengambil bagian hasil kerja, bukan hanya identitas agen.
+  function makeBrief(report, limit = 300) {
+    let text = String(report || 'Tidak ada hasil')
       .replace(/\s+/g, ' ')
-      .trim()
-      .slice(0, limit);
+      .trim();
+
+    const markers = [
+      'HASIL PEKERJAAN',
+      'HASIL KERJA',
+      'HASIL PEKERJAAN:',
+      'HASIL:'
+    ];
+
+    let start = -1;
+
+    for (const marker of markers) {
+      const index = text.toUpperCase().indexOf(marker);
+      if (index >= 0 && (start === -1 || index < start)) {
+        start = index + marker.length;
+      }
+    }
+
+    if (start >= 0) {
+      text = text.slice(start).trim();
+    }
+
+    return text.slice(0, limit);
   }
 
-  try {
-    out.textContent =
-      'VICTORIA: Kantor mulai bekerja. Menyiapkan sembilan agen spesialis...';
+  // Membuat konteks berdasarkan laporan agen sebelumnya.
+  function buildAgentContext(agentIndex) {
+    const perReportLimit = reports.length
+      ? Math.max(140, Math.floor(1700 / reports.length))
+      : 0;
 
-    // TAHAP 1: AGEN SPESIALIS BEKERJA BERURUTAN
-
-    for (let i = 1; i < agents.length; i++) {
-      out.textContent =
-        `VICTORIA: Agen ${i + 1}/10 sedang bekerja: ${agents[i][0]}`;
-
-      const previousReports = reports.map((r, index) => `
+    const previousReports = reports.map((r, index) => `
 AGEN ${index + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
-RINGKASAN: ${shortReport(r.report, 140)}
+HASIL: ${makeBrief(r.report, perReportLimit)}
 `).join('\n');
 
-      const agentContext = `
+    return `
 INSTRUKSI CEO:
-${ctx.slice(0, 350)}
+${ctx.slice(0, 450)}
 
 HASIL AGEN SEBELUMNYA:
 ${previousReports || 'Belum ada laporan sebelumnya.'}
 
 TUGAS:
 1. Kerjakan tugas khusus sesuai jabatanmu.
-2. Gunakan hasil agen sebelumnya sebagai bahan pendukung.
-3. Berikan hasil konkret dan bisa digunakan.
-4. Jangan mengarang fakta atau data.
+2. Gunakan hasil agen sebelumnya sebagai bahan kerja.
+3. Berikan hasil konkret dan dapat digunakan.
+4. Jangan mengarang fakta, data, harga, atau fitur.
 5. Tandai informasi yang belum diverifikasi.
-6. Jangan mengulang laporan sebelumnya.
-7. Sampaikan rekomendasi dan langkah berikutnya.
+6. Jangan hanya memberikan identitas atau pengantar.
+7. Berikan hasil kerja lengkap dan rekomendasi berikutnya.
 
 Gunakan Bahasa Indonesia.
-`.slice(0, 2200);
+`.trim().slice(0, 3400);
+  }
+
+  try {
+    out.textContent =
+      'VICTORIA: Kantor mulai bekerja. Menyiapkan sembilan agen spesialis...';
+
+    // TAHAP 1: SEMBILAN AGEN BEKERJA BERURUTAN
+
+    for (let i = 1; i < agents.length; i++) {
+      out.textContent =
+        `VICTORIA: Agen ${i + 1}/10 sedang bekerja: ${agents[i][0]}`;
+
+      const agentContext = buildAgentContext(i);
 
       try {
         const result = await callAgentAPI(i, agentContext);
         const content = extractContent(result);
+        const report = String(content || '').trim();
+
+        if (!report) {
+          throw new Error('Agen tidak memberikan hasil kerja.');
+        }
 
         reports.push({
           name: agents[i][0],
           success: true,
-          report: String(content)
+          report: report
         });
 
       } catch (error) {
@@ -397,61 +333,67 @@ Gunakan Bahasa Indonesia.
       }
     }
 
-    // TAHAP 2: VICTORIA MENGANALISIS SEMBILAN LAPORAN
+    // TAHAP 2: VICTORIA MENERIMA SEMBILAN RINGKASAN
 
     out.textContent =
-      'VICTORIA: Sembilan agen selesai. Saya sedang menyusun laporan direktur...';
-
-    const summary = reports.map((r, i) => `
-AGEN ${i + 2}: ${r.name}
-STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
-HASIL: ${shortReport(r.report, 180)}
-`).join('\n');
+      'VICTORIA: Sembilan agen selesai. Saya sedang mengaudit laporan...';
 
     const successCount = reports.filter(r => r.success).length;
     const failedCount = reports.length - successCount;
 
+    const summary = reports.map((r, i) => `
+AGEN ${i + 2}: ${r.name}
+STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
+HASIL KERJA: ${makeBrief(r.report, 220)}
+`).join('\n');
+
     const managerContext = `
 INSTRUKSI CEO:
-${ctx.slice(0, 300)}
+${ctx.slice(0, 400)}
 
 JUMLAH LAPORAN:
 Total agen spesialis: ${reports.length}
 Berhasil: ${successCount}
 Gagal: ${failedCount}
 
-SEMBILAN LAPORAN AGEN:
+LAPORAN SEMBILAN AGEN:
 ${summary}
 
-TUGAS VICTORIA SEBAGAI DIREKTUR:
-1. Periksa seluruh sembilan nama agen dan statusnya.
-2. Bahas hasil setiap agen berdasarkan ringkasan yang tersedia.
-3. Gabungkan hasil menjadi satu strategi kerja.
-4. Bedakan hasil, asumsi, dan informasi belum terverifikasi.
-5. Sebutkan secara jujur agen yang gagal.
-6. Jangan mengklaim pekerjaan yang belum dilakukan.
-7. Tentukan prioritas dan langkah berikutnya.
+TUGAS VICTORIA:
+1. Periksa kesembilan agen berdasarkan nama dan status.
+2. Periksa isi hasil kerja, bukan hanya identitas.
+3. Jelaskan kontribusi setiap agen.
+4. Gabungkan hasil menjadi strategi yang saling berhubungan.
+5. Bedakan fakta, asumsi, dan informasi belum terverifikasi.
+6. Jangan menyebut laporan gagal jika ringkasannya berisi hasil kerja.
+7. Sebutkan agen yang benar-benar gagal.
+8. Jangan mengklaim pekerjaan yang belum dilakukan.
+9. Tentukan prioritas dan langkah berikutnya.
 
-FORMAT LAPORAN:
+FORMAT:
 1. Ringkasan direktur.
-2. Pemeriksaan sembilan agen.
-3. Hasil kerja setiap agen.
+2. Audit sembilan agen.
+3. Hasil kerja masing-masing agen.
 4. Strategi gabungan.
-5. Hasil siap digunakan.
+5. Rekomendasi siap digunakan.
 6. Kekurangan dan risiko.
 7. Keputusan Victoria.
 8. Langkah berikutnya.
 
-Jika ringkasan suatu agen tidak cukup, nyatakan bahwa hasilnya perlu diperiksa dari laporan lengkap.
-
+Jika ringkasan kurang lengkap, nyatakan keterbatasannya secara jujur.
+Jangan mengarang isi laporan yang tidak tersedia.
 Gunakan Bahasa Indonesia profesional.
-`.slice(0, 2200);
+`.trim().slice(0, 3800);
 
     let victoriaReport = '';
 
     try {
       const result = await callAgentAPI(0, managerContext);
-      victoriaReport = extractContent(result);
+      victoriaReport = String(extractContent(result) || '').trim();
+
+      if (!victoriaReport) {
+        victoriaReport = 'Victoria tidak memberikan laporan.';
+      }
     } catch (error) {
       victoriaReport =
         'Victoria gagal membuat laporan akhir: ' + error.message;
@@ -497,6 +439,8 @@ ${r.report}
     out.dataset.running = 'false';
   }
 }
+
+
 
 
 
