@@ -317,7 +317,7 @@ async function runAllAgents() {
 AGEN ${index + 2}: ${r.name}
 STATUS: ${r.success ? 'BERHASIL' : 'GAGAL'}
 HASIL:
-${r.report.slice(0, 900)}
+${r.report.slice(0, 250)}
 `;
     }).join('\n');
 
