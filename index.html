@@ -239,30 +239,50 @@ async function runAllAgents() {
 
   const reports = [];
 
-  function extractContent(result) {
-    if (typeof result === 'string') {
+  
+function extractContent(result) {
+  let value = result;
+
+  for (let i = 0; i < 5; i++) {
+    if (typeof value === 'string') {
       try {
-        const parsed = JSON.parse(result);
-        return (
-          parsed.choices?.[0]?.message?.content ||
-          parsed.result?.choices?.[0]?.message?.content ||
-          parsed.result ||
-          result
-        );
-      } catch (e) {
-        return result;
+        value = JSON.parse(value);
+        continue;
+      } catch {
+        return value;
       }
     }
 
-    return (
-      result?.choices?.[0]?.message?.content ||
-      result?.result?.choices?.[0]?.message?.content ||
-      result?.response ||
-      JSON.stringify(result, null, 2)
-    );
+    if (value && typeof value === 'object') {
+      if (value.choices?.[0]?.message?.content) {
+        return value.choices[0].message.content;
+      }
+
+      if (value.result !== undefined) {
+        value = value.result;
+        continue;
+      }
+
+      if (value.response !== undefined) {
+        value = value.response;
+        continue;
+      }
+
+      if (value.content !== undefined) {
+        return String(value.content);
+      }
+
+      return JSON.stringify(value, null, 2);
+    }
+
+    break;
   }
 
-  // Mengambil bagian hasil kerja, bukan hanya identitas agen.
+  return typeof value === 'string'
+    ? value
+    : JSON.stringify(value ?? null, null, 2);
+}
+
   function makeBrief(report, limit = 300) {
     let text = String(report || 'Tidak ada hasil')
       .replace(/\s+/g, ' ')
